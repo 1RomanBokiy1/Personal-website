@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/sty.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo">BOKIY CORP</div>
+        <div class="burger"><span></span><span></span><span></span></div>
+        <nav class="nav">
+            <a href="index.html#news">Новости</a>
+            <div class="nav-item-dropdown">
+                <a href="#">Компания ▾</a>
+                <div class="dropdown-menu">
+                    <a href="#">О нас</a>
+                    <a href="#">Контакты</a>
+                </div>
+            </div>
+            <div class="nav-item-dropdown">
+                <a href="#">Продукты ▾</a>
+                <div class="dropdown-menu">
+                    <a href="#">God of War</a>
+                    <a href="#">Last Of Us</a>
+                    <a href="#">Dragon Warrior</a>
+                    <a href="#">Dark Souls v</a>
+                    <a href="#">Super Mario</a>
+                </div>
+            </div>
+            <a href="#support">Поддержка</a>
+            <a href="careers.html" class="btn-outline active-link">Карьера</a>
+            <a href="#">Ru / Eng</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero careers-hero" id="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content fade-in">
+        <span class="tag-orange">Карьера</span>
+        <h1 id="hero-title">Присоединяйся к команде</h1>
+        <p>Создавайте будущее гейминга вместе с нами. Мы ищем талантливых людей.</p>
+    </div>
+
+    <div class="hero-arrows single-side">
+        <button id="next-btn" class="arrow-btn big-arrow">←</button>
+    </div>
+
+    <div class="hero-counter">
+        <span id="current-slide">01</span>/<span id="total-slides">03</span>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container careers-grid">
+        <div class="contact-info fade-on-scroll">
+            <h2 class="section-title small">Контактная информация</h2>
+            <div class="info-text-box">
+                <p>Мы всегда ищем творческих людей. Если вы не нашли подходящую вакансию, все равно отправьте нам свои данные!</p>
+            </div>
+        </div>
+
+        <div class="apply-form fade-on-scroll">
+            <form action="#">
+                <input type="text" placeholder="Имя" class="form-input">
+                <input type="email" placeholder="Email" class="form-input">
+                
+                <div class="file-upload">
+                    <span>↓ резюме</span>
+                    <input type="file" id="resume">
+                </div>
+
+                <label class="checkbox-container">
+                    <input type="checkbox" required>
+                    <span class="checkmark"></span>
+                    Я согласен на обработку
+                </label>
+
+                <button type="submit" class="btn btn-orange-full">Присоединиться</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section class="section dark">
+    <div class="container center fade-on-scroll">
+        <h2 class="mega-text">Ваше Будущее Начинается здесь</h2>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-bottom-careers">
+        <div class="footer-left">
+            <p>Bokiy Corp</p>
+            <h5>© 2026 Bokiy Corporation. Все права защищены</h5>
+            <a href="#" class="privacy-link">Политика конфиденциальности</a>
+        </div>
+    </div>
+</footer>
+
+<script src="/scripts/script.js"></script>
+</body>
+</html>
