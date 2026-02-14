@@ -49,11 +49,10 @@ a {
     color: #ff3c1f;
 }
 
-/* NAV & DROPDOWNS - ИСПРАВЛЕНО (используем gap вместо margin) */
 .nav {
     display: flex;
     align-items: center;
-    gap: 25px; /* Равномерный отступ между всеми ссылками */
+    gap: 25px;
 }
 
 .nav > a,
@@ -154,7 +153,7 @@ a {
     max-width: 800px
 }
 
-/* HERO CONTROLS (ARROWS + COUNTER) */
+/* HERO CONTROLS */
 .hero h1 {
     font-family: 'Oswald', sans-serif;
     font-size: 72px;
@@ -356,7 +355,7 @@ a {
     font-weight: bold;
 }
 
-/* PROMO (NEW DESIGN) */
+/* PROMO */
 .promo-grid-new {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -417,7 +416,7 @@ a {
     color: #000;
 }
 
-/* BOTTOM (LOCATIONS NEW DESIGN) */
+/* BOTTOM */
 .bottom-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -568,7 +567,7 @@ a {
         padding: 40px;
         transition: 0.4s;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
-        gap: 15px; /* Вертикальный отступ в мобильном меню */
+        gap: 15px;
     }
 
     .nav.active { right: 0; }
@@ -644,11 +643,11 @@ a {
     cursor: pointer;
 }
 
-/* ЧЕКБОКС - ИСПРАВЛЕНО (выравнивание по центру текста) */
+/* ЧЕКБОКС */
 .checkbox-container {
     display: flex;
     align-items: center;
-    gap: 12px; /* Отступ от квадратика до текста */
+    gap: 12px;
     margin-bottom: 30px;
     cursor: pointer;
     font-size: 14px;
@@ -657,7 +656,7 @@ a {
 }
 
 .checkbox-container input {
-    margin: 0; /* Убираем дефолтные отступы браузера */
+    margin: 0;
     cursor: pointer;
 }
 
