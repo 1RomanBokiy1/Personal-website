@@ -5,4 +5,4 @@
 HTML5
 
 ## Ссылки
-[Публичная страница на GitHub Pages](https://github.com/1RomanBokiy1/Personal-website)
+[Публичная страница на GitHub Pages](https://1romanbokiy1.github.io/Personal-website/)
