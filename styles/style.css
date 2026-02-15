@@ -133,7 +133,7 @@ a {
 /* HERO */
 .hero {
     height: 100vh;
-    background: url('https://images.unsplash.com/photo-1511512578047-dfb367046420') center/cover no-repeat;
+    background: url('') center/cover no-repeat;
     display: flex;
     align-items: center;
     position: relative;
@@ -461,10 +461,10 @@ a {
     letter-spacing: 1px;
 }
 
-.location-card.la { background-image: url('https://images.unsplash.com/photo-1580655653885-65763b2597d0'); }
-.location-card.ny { background-image: url('https://images.unsplash.com/photo-1541963463532-d68292c34b19'); }
-.location-card.london { background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad'); }
-.location-card.tokyo { background-image: url('https://images.unsplash.com/photo-1540959733332-eab4deabeeaf'); }
+.location-card-1 { background-image: url(''); }
+.location-card-2 { background-image: url(''); }
+.location-card-3 { background-image: url(''); }
+.location-card-4 { background-image: url(''); }
 
 .contact-box {
     background: #1a1a1a;
@@ -551,7 +551,7 @@ a {
     .news-wrapper, .promo-grid-new, .bottom-grid, .locations-grid { grid-template-columns: 1fr }
     .promo-text-blocks { grid-template-columns: 1fr; }
 
-    /* Mobile Menu Logic */
+    /* Mobile */
     .burger { display: flex; z-index: 1001; }
 
     .nav {
@@ -587,9 +587,6 @@ a {
     .burger.toggle span:nth-child(2) { opacity: 0; }
     .burger.toggle span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
 }
-
-/* CAREERS PAGE SPECIFIC */
-.careers-hero { background-image: url('https://images.unsplash.com/photo-1522071823991-b19c77663c17'); }
 
 .tag-orange {
     background: #ff3c1f;

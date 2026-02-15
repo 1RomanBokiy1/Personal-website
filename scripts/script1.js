@@ -2,36 +2,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const burger = document.querySelector('.burger');
     const nav = document.querySelector('.nav');
 
-    burger.addEventListener('click', () => {
-        nav.classList.toggle('active');
-        burger.classList.toggle('toggle');
-    });
-
-    // --- 2. Логика Слайдера (Hero Section) ---
-    // Массив данных для слайдера. Я поставил картинки-заглушки.
-    // Замени url(...) на свои реальные фото игр.
-    const slides = [
-        {
-            title: "God of War",
-            image: "https://images.unsplash.com/photo-1511512578047-dfb367046420"
-        },
-        {
-            title: "last Of Us",
-            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e"
-        },
-        {
-            title: "Dragon Warrior",
-            image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f"
-        },
-        {
-            title: "Dark Souls V",
-            image: "https://images.unsplash.com/photo-1511882150382-421056ac8ba7"
-        },
-        {
-            title: "Super Mario",
-            image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc"
-        }
+    if (burger) {
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            burger.classList.toggle('toggle');
+        });
+    }    
+    const mainSlides = [
+        { title: "God of War", image: "" },
+        { title: "Last Of Us", image: "" },
+        { title: "Dragon Warrior", image: "" },
+        { title: "Dark Souls V", image: "" },
+        { title: "Super Mario", image: "" }
     ];
+    const careerSlides = [
+        { title: "Level Design Team", image: "" },
+        { title: "Frontend Team", image: "" },
+        { title: "Backend Team", image: "" },
+        { title: "Sound Team", image: "" }
+    ];
+
+    const isCareersPage = document.body.contains(document.querySelector('.careers-hero'));
+    const currentList = isCareersPage ? careerSlides : mainSlides;
 
     let currentIndex = 0;
     
@@ -42,30 +34,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
 
-    totalSlidesEl.innerText = `0${slides.length}`;
-
-    function updateSlide() {
-        const slide = slides[currentIndex];
-        heroSection.style.backgroundImage = `url('${slide.image}')`;
-        heroTitle.innerText = slide.title;
-        currentSlideEl.innerText = `0${currentIndex + 1}`;
+    if (totalSlidesEl) {
+        totalSlidesEl.innerText = `0${currentList.length}`;
     }
 
-    nextBtn.addEventListener('click', () => {
-        currentIndex++;
-        if (currentIndex >= slides.length) {
-            currentIndex = 0;
+    function updateSlide() {
+        if (!heroSection || !heroTitle) return;
+        const slide = currentList[currentIndex];
+        heroSection.style.backgroundImage = `url('${slide.image}')`;
+        heroTitle.innerText = slide.title;
+        if (currentSlideEl) {
+            currentSlideEl.innerText = `0${currentIndex + 1}`;
         }
-        updateSlide();
-    });
+    }
 
-    prevBtn.addEventListener('click', () => {
-        currentIndex--;
-        if (currentIndex < 0) {
-            currentIndex = slides.length - 1;
-        }
-        updateSlide();
-    });
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % currentList.length;
+            updateSlide();
+        });
+    }
+
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
+            updateSlide();
+        });
+    }
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -78,5 +73,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade-on-scroll').forEach(el => {
         observer.observe(el);
     });
-
 });
