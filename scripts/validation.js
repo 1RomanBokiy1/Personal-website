@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const file = this.files[0];
         if (!file) return;
 
-        const maxSize = 5 * 1024 * 1024; // 5MB
+        const maxSize = 5 * 1024 * 1024;
 
         if (file.size > maxSize) {
             showFileError('Файл слишком большой (макс. 5MB)');
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const emailValue = email.value.trim(); 
         const words = fullnameValue.split(' ').filter(word => word.length > 0);
         
-        if (fullnameValue === '' || words.length < 2) {
+        if (fullnameValue === '' || words.length < 1) {
             showError(fullname, 'Введите корректное ФИО');
             isValid = false;
         }
