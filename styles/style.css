@@ -747,3 +747,92 @@ a {
     .error-box { padding: 20px 30px; }
     .error-box h2 { font-size: 24px; }
 }
+
+.input-error {
+    border: 2px solid #ff3c1f !important;
+    background: rgba(255, 60, 31, 0.05);
+    transition: 0.3s;
+}
+
+.error-message {
+    color: #ff3c1f;
+    font-size: 13px;
+    margin-top: 8px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    animation: fadeInUp 0.3s ease;
+}
+
+.file-upload.success {
+    border: 2px solid #2ecc71;
+    color: #2ecc71;
+}
+
+.file-upload.error {
+    border: 2px solid #ff3c1f;
+    background: rgba(255, 60, 31, 0.05);
+}
+
+.file-info {
+    font-size: 13px;
+    margin-top: 8px;
+    color: #2ecc71;
+    animation: fadeInUp 0.3s ease;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 2000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modal-box {
+    background: #1a1a1a;
+    padding: 40px;
+    border: 2px solid #ff3c1f;
+    text-align: center;
+    max-width: 400px;
+    animation: fadeInUp 0.4s ease;
+}
+
+.modal-box h3 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.modal-box p {
+    color: #ccc;
+    margin-bottom: 25px;
+}
+
+/* Новый исправленный код */
+.modal-box button {
+    background: #ff3c1f;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 12px 30px;
+    transition: 0.3s;
+    display: inline-block;
+}
+
+.modal-box button:hover {
+    background: #d92f16;
+    color: #fff;
+    transform: translateY(-2px);
+}
