@@ -18,21 +18,21 @@
             <div class="nav-item-dropdown">
                 <a href="#">Компания ▾</a>
                 <div class="dropdown-menu">
-                    <a href="#">О нас</a>
+                    <a href="404.html">О нас</a>
                     <a href="index.html#contact">Контакты</a>
                 </div>
             </div>
             <div class="nav-item-dropdown">
-                <a href="#">Продукты ▾</a>
+                <a href="index.html#games">Продукты ▾</a>
                 <div class="dropdown-menu">
-                    <a href="#">God of War</a>
-                    <a href="#">Last Of Us</a>
-                    <a href="#">Dragon Warrior</a>
-                    <a href="#">Dark Souls v</a>
-                    <a href="#">Super Mario</a>
+                    <a href="404.html">God of War</a>
+                    <a href="404.html">Last Of Us</a>
+                    <a href="404.html">Dragon Warrior</a>
+                    <a href="404.html">Dark Souls v</a>
+                    <a href="404.html">Super Mario</a>
                 </div>
             </div>
-            <a href="#support">Поддержка</a>
+            <a href="404.html">Поддержка</a>
             <a href="careers.html" class="btn-outline active-link">Карьера</a>
             <a href="#">Ru / Eng</a>
         </nav>
@@ -66,19 +66,19 @@
         </div>
 
         <div class="apply-form fade-on-scroll">
-            <form action="#">
-                <input type="text" placeholder="Имя" class="form-input">
-                <input type="email" placeholder="Email" class="form-input">
+            <form id="feedbackForm" action="#">
+                <input type="text" id="fullname" placeholder="ФИО" class="form-input">
+                <input type="email" id="email" placeholder="Email" class="form-input">
                 
-                <div class="file-upload">
-                    <span>↓ резюме</span>
-                    <input type="file" id="resume">
+                <div class="file-upload" id="fileUploadBox">
+                    <span id="fileUploadText">↓ Резюме (PDF/DOCX) до 5MB</span>
+                    <input type="file" id="resume" accept=".pdf,.docx">
                 </div>
 
                 <label class="checkbox-container">
-                    <input type="checkbox" required>
+                    <input type="checkbox" id="agreement" required>
                     <span class="checkmark"></span>
-                    Я согласен на обработку
+                    Я согласен на обработку персональных данных
                 </label>
 
                 <button type="submit" class="btn btn-orange-full">Присоединиться</button>
@@ -103,6 +103,16 @@
     </div>
 </footer>
 
+<div class="modal-overlay" id="customModal">
+    <div class="modal-box">
+        <h3>Заявка отправлена</h3>
+        <p>Спасибо! Мы свяжемся с вами в ближайшее время.</p>
+        <button id="closeModal" class="btn">Закрыть</button>
+    </div>
+</div>
+
 <script src="scripts/script1.js"></script>
+<script src="scripts/validation.js"></script>
+<script src="scripts/consolerLogger.js"></script>
 </body>
 </html>
