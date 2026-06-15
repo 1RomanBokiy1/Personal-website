@@ -1,0 +1,47 @@
+.error-page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px; 
+}
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.error-bg-text {
+    font-size: 120px;
+    margin-bottom: -40px;
+    line-height: 1;
+}
+
+.error-box {
+    border: 3px solid #ff3c1f;
+    padding: 30px 60px;
+    background: rgba(255, 60, 31, 0.05);
+}
+
+.error-box h2 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 40px;
+    letter-spacing: 5px;
+    color: #fff;
+    margin: 0;
+}
+
+.error-description {
+    max-width: 450px;
+    color: #888;
+    margin: 20px 0 30px;
+}
+
+@media (max-width: 600px) {
+    .error-bg-text { font-size: 80px; }
+    .error-box { padding: 20px 30px; }
+    .error-box h2 { font-size: 24px; }
+}
