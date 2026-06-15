@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God of War | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/game.css">
+</head>
+<body>
+
+<div id="preloader" class="preloader">
+    <div class="preloader-logo">BOKIY CORP</div>
+    <div class="preloader-spinner"></div>
+</div>
+
+<script>
+    (function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            requestAnimationFrame(() => {
+                preloader.classList.add('active');
+                setTimeout(() => {
+                    preloader.classList.remove('active');
+                }, 1000);
+            });
+        }
+    })();
+</script>
+
+<div id="header-placeholder"></div>
+
+<section class="game-hero" style="background-image: url('images/games/god-of-war-bg.jpg');">
+    <div class="container">
+        <h1>God of War</h1>
+        <p>Эпический экшен в мире скандинавской мифологии</p>
+    </div>
+</section>
+
+<section class="game-content">
+    <div class="container">
+        <div class="game-description">
+            <img src="images/games/god-of-war-detail.jpg" alt="God of War">
+            <div>
+                <h2 class="section-title">Об игре</h2>
+                <p>God of War — это переосмысление легендарной серии. Игроки управляют Кратосом в мире скандинавской мифологии. Мрачный сюжет, зрелищные битвы и глубокое исследование мира.</p>
+                <p><strong>Релиз: 2026 | PC, PS5, Xbox Series X</strong></p>
+            </div>
+        </div>
+        <div class="features">
+            <div class="feature">
+                <div class="icon">⚔️</div>
+                <h3>Динамичный бой</h3>
+                <p>Уникальная система сражений с использованием топора Левиафана</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🌍</div>
+                <h3>Открытый мир</h3>
+                <p>Путешествуйте по девяти королевствам</p>
+            </div>
+            <div class="feature">
+                <div class="icon">📜</div>
+                <h3>Эпический сюжет</h3>
+                <p>История отца и сына, меняющая жанр</p>
+            </div>
+        </div>
+        <div class="video-container">
+            <h3 class="section-title small">Трейлер</h3>
+            <iframe src="https://www.youtube.com/embed/example1" title="God of War Trailer" allowfullscreen></iframe>
+        </div>
+        <a href="index.html#games" class="btn btn-dark back-link">← К играм</a>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="scripts/loadComponents.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('fade-in');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.game-description, .features, .video-container').forEach(el => observer.observe(el));
+    });
+</script>
+</body>
+</html>
