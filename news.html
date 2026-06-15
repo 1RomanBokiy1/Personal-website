@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новости | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/news.css">
+</head>
+<body>
+
+<div id="preloader" class="preloader">
+    <div class="preloader-logo">BOKIY CORP</div>
+    <div class="preloader-spinner"></div>
+</div>
+
+<script>
+    (function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            requestAnimationFrame(() => {
+                preloader.classList.add('active');
+                setTimeout(() => {
+                    preloader.classList.remove('active');
+                }, 1000);
+            });
+        }
+    })();
+</script>
+
+<div id="header-placeholder"></div>
+
+<section class="news-list">
+    <div class="container">
+        <h1 class="section-title">Все новости</h1>
+        <div class="news-list-items">
+            <a href="news-detail.html?id=1" class="news-item">
+                <div class="news-item-img" style="background-image: url('images/news/main-news.jpg');"></div>
+                <div class="news-item-content">
+                    <span class="tag">14/02/2026</span>
+                    <h3>Какие сложности были при разработке игры "God Of War"</h3>
+                    <p>Бокий Роман - Ведущий разработчик</p>
+                </div>
+            </a>
+            <a href="news-detail.html?id=2" class="news-item">
+                <div class="news-item-img" style="background-image: url('images/news/news1.jpg');"></div>
+                <div class="news-item-content">
+                    <span class="tag">05/01/2026</span>
+                    <h3>Возможности продвижения малых проектов</h3>
+                    <p>Подробнее о стратегиях маркетинга в игровой индустрии</p>
+                </div>
+            </a>
+            <a href="news-detail.html?id=3" class="news-item">
+                <div class="news-item-img" style="background-image: url('images/news/news2.jpg');"></div>
+                <div class="news-item-content">
+                    <span class="tag">28/12/2025</span>
+                    <h3>Крупное обновление в Destiny 2</h3>
+                    <p>Новые уровни, оружие и PvP-режимы</p>
+                </div>
+            </a>
+        </div>
+        <div class="home-button">
+            <a href="index.html" class="btn accent">Домой</a>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="scripts/loadComponents.js"></script>
+</body>
+</html>
