@@ -182,14 +182,14 @@
     .footer-bottom-careers { flex-direction: column; align-items: flex-start; gap: 20px; }
 }
 
-/* ФИКС СЛАЙДЕРА И ХИРО-СЕКЦИИ */
 .hero.careers-hero {
     position: relative;
-    min-height: 70vh;
+    height: 100vh; 
     display: flex;
     align-items: center;
-    overflow: hidden;
     background-color: #0b0b0b;
+    overflow: hidden;
+    padding-top: 80px;
 }
 
 .hero-overlay {
@@ -264,5 +264,119 @@
         left: 5%;
         bottom: 6%;
         font-size: 18px;
+    }
+}
+/* Стили для hero-секции карьеры */
+.hero.careers-hero {
+    position: relative;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    background-color: #0b0b0b;
+    overflow: hidden;
+}
+
+.hero.careers-hero .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+.hero.careers-hero .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    text-align: left;
+}
+
+.hero.careers-hero .hero-content h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 72px;
+    text-transform: uppercase;
+    margin: 20px 0;
+    line-height: 1.1;
+}
+
+.hero.careers-hero .hero-content p {
+    font-size: 18px;
+    color: #ccc;
+    max-width: 500px;
+}
+
+.tag-orange {
+    background: #ff3c1f;
+    display: inline-block;
+    padding: 6px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.hero.careers-hero .hero-arrows {
+    position: absolute;
+    right: 5%;
+    bottom: 10%;
+    z-index: 3;
+}
+
+.hero.careers-hero .arrow-btn.big-arrow {
+    background: transparent;
+    border: 2px solid #ff3c1f;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.hero.careers-hero .arrow-btn.big-arrow:hover {
+    background: #ff3c1f;
+    transform: scale(1.05);
+}
+
+.hero.careers-hero .hero-counter {
+    position: absolute;
+    left: 5%;
+    bottom: 11%;
+    font-family: 'Oswald', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    z-index: 3;
+}
+
+.hero.careers-hero .hero-counter #current-slide {
+    color: #ff3c1f;
+    font-weight: 600;
+}
+
+.hero.careers-hero .hero-counter #total-slides {
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .hero.careers-hero .hero-content h1 {
+        font-size: 42px;
+    }
+    .hero.careers-hero .hero-arrows {
+        bottom: 5%;
+        right: 5%;
+    }
+    .hero.careers-hero .hero-counter {
+        bottom: 6%;
+        left: 5%;
+        font-size: 18px;
+    }
+    .hero.careers-hero .arrow-btn.big-arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
     }
 }

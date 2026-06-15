@@ -1,0 +1,59 @@
+.project-hero {
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+}
+.project-hero .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.3));
+}
+.project-hero .container {
+    position: relative;
+    z-index: 2;
+}
+.project-hero h1 {
+    font-size: 72px;
+    font-family: 'Oswald', sans-serif;
+}
+.project-hero p {
+    font-size: 20px;
+    margin-top: 20px;
+}
+.project-content {
+    padding: 80px 0;
+}
+.project-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.project-description img {
+    width: 100%;
+    border-radius: 12px;
+}
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+.feature {
+    background: #1a1a1a;
+    padding: 30px;
+    text-align: center;
+}
+.feature .icon {
+    font-size: 48px;
+    color: #ff3c1f;
+}
+@media (max-width: 900px) {
+    .project-hero h1 { font-size: 48px; }
+    .project-description { grid-template-columns: 1fr; }
+    .features { grid-template-columns: 1fr; }
+}

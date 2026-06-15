@@ -275,10 +275,25 @@
     line-height: 1.8
 }
 
-/* RESPONSIVE INDEX */
 @media(max-width:900px) {
     .hero h1 { font-size: 42px }
     .hero-arrows { top: auto; bottom: 100px; right: 5%; flex-direction: row; }
     .news-wrapper, .promo-grid-new, .bottom-grid, .locations-grid { grid-template-columns: 1fr }
     .promo-text-blocks { grid-template-columns: 1fr; }
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+.hero .hero-overlay {
+    z-index: 1;
+}
+.hero-content {
+    z-index: 2;
 }

@@ -1,33 +1,48 @@
-/* ==================== СЕКЦИЯ "О НАС" ==================== */
-.about-main {
-    padding: 140px 0 100px;
-    background: #0b0b0b;
-}
 
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+.about-main {
+    min-height: 100vh;
+    padding-top: 80px;
+    background: #0b0b0b;
+    display: flex;
     align-items: center;
 }
 
+.about-grid {
+    display: flex;
+    align-items: stretch;   
+    gap: 0;
+}
+
 .about-image {
-    height: 520px;
-    background: #222 center/cover no-repeat;
-    border: 1px solid #333;
-    position: relative;
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none; 
+    min-height: 500px;  
 }
 
 .about-image::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+    display: none;
+}
+
+.about-content {
+    flex: 1;
+    padding: 60px;
+    background: #0b0b0b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .about-content h2 {
-    font-size: 48px;
     margin-bottom: 35px;
+}
+
+.about-content p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #ccc;
 }
 
 .about-buttons {
@@ -37,7 +52,6 @@
     flex-wrap: wrap;
 }
 
-/* ==================== НАШИ ЦЕННОСТИ ==================== */
 .values-section {
     padding: 100px 0;
     background: #111;
@@ -71,7 +85,6 @@
     box-shadow: 0 10px 30px rgba(255, 60, 31, 0.3);
 }
 
-/* ==================== НАШИ ОФИСЫ ==================== */
 .offices-section {
     padding: 100px 0;
     background: #0b0b0b;
@@ -140,12 +153,13 @@
     transform: translateY(-3px);
 }
 
-/* ==================== МОДАЛЬНАЯ ГАЛЕРЕЯ ==================== */
 .gallery-modal {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.95);
     z-index: 1000;
     align-items: center;
@@ -158,21 +172,25 @@
 
 .gallery-content {
     position: relative;
-    max-width: 95%;
+    max-width: 90vw;
     max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gallery-image {
     max-width: 100%;
     max-height: 85vh;
+    object-fit: contain;
     border: 1px solid #444;
     box-shadow: 0 0 40px rgba(0,0,0,0.8);
 }
 
 .gallery-close {
-    position: absolute;
-    top: -20px;
-    right: -20px;
+    position: fixed;
+    top: 30px;
+    right: 30px;
     background: #ff3c1f;
     color: white;
     width: 55px;
@@ -208,10 +226,22 @@
     cursor: pointer;
     z-index: 10;
     border-radius: 50%;
+    transition: 0.2s;
 }
 
-.gallery-prev { left: -30px; }
-.gallery-next { right: -30px; }
+.gallery-prev:hover,
+.gallery-next:hover {
+    background: #ff3c1f;
+    transform: translateY(-50%) scale(1.05);
+}
+
+.gallery-prev {
+    left: -30px;
+}
+
+.gallery-next {
+    right: -30px;
+}
 
 .gallery-counter {
     position: absolute;
@@ -220,18 +250,24 @@
     transform: translateX(-50%);
     color: #aaa;
     font-size: 16px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 12px;
+    border-radius: 20px;
 }
 
-/* Адаптив ABOUT */
-@media (max-width: 992px) {
-    .about-grid,
-    .office-card {
-        grid-template-columns: 1fr;
-        gap: 50px;
+/* Адаптив для мобильных */
+@media (max-width: 768px) {
+    .gallery-close {
+        top: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: 24px;
     }
-    
-    .about-image,
-    .office-image-wrapper {
-        height: 380px;
+    .gallery-prev {
+        left: 5px;
+    }
+    .gallery-next {
+        right: 5px;
     }
 }
