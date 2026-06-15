@@ -1,13 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav');
-
-    if (burger) {
-        burger.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            burger.classList.toggle('toggle');
-        });
-    }    
+    // Слайдеры для главной и страницы карьеры
     const mainSlides = [
         { title: "God of War", image: "" },
         { title: "Last Of Us", image: "" },
@@ -35,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const nextBtn = document.getElementById('next-btn');
 
     if (totalSlidesEl) {
-        totalSlidesEl.innerText = `0${currentList.length}`;
+        totalSlidesEl.innerText = `${currentList.length.toString().padStart(2, '0')}`;
     }
 
     function updateSlide() {
@@ -44,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSection.style.backgroundImage = `url('${slide.image}')`;
         heroTitle.innerText = slide.title;
         if (currentSlideEl) {
-            currentSlideEl.innerText = `0${currentIndex + 1}`;
+            currentSlideEl.innerText = `${(currentIndex + 1).toString().padStart(2, '0')}`;
         }
     }
 
@@ -62,6 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Intersection Observer для анимации при скролле
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -75,9 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ГАЛЕРЕЯ ОФИСОВ 
+// ГАЛЕРЕЯ ОФИСОВ (только для about.html)
 let currentImages = [];
-let currentIndex = 0;
+let currentGalleryIndex = 0;
 
 const galleryImages = [
     // Офис 0 - Москва
@@ -96,27 +89,31 @@ const galleryImages = [
 
 function openGallery(officeIndex) {
     currentImages = galleryImages[officeIndex] || galleryImages[0];
-    currentIndex = 0;
+    currentGalleryIndex = 0;
     updateGallery();
-    document.getElementById('galleryModal').classList.add('active');
+    const modal = document.getElementById('galleryModal');
+    if (modal) modal.classList.add('active');
 }
 
 function closeGallery() {
-    document.getElementById('galleryModal').classList.remove('active');
+    const modal = document.getElementById('galleryModal');
+    if (modal) modal.classList.remove('active');
 }
 
 function updateGallery() {
-    document.getElementById('galleryImage').src = currentImages[currentIndex];
-    document.getElementById('galleryCounter').textContent = `${currentIndex + 1} / ${currentImages.length}`;
+    const galleryImage = document.getElementById('galleryImage');
+    const galleryCounter = document.getElementById('galleryCounter');
+    if (galleryImage) galleryImage.src = currentImages[currentGalleryIndex];
+    if (galleryCounter) galleryCounter.textContent = `${currentGalleryIndex + 1} / ${currentImages.length}`;
 }
 
 function nextImage() {
-    currentIndex = (currentIndex + 1) % currentImages.length;
+    currentGalleryIndex = (currentGalleryIndex + 1) % currentImages.length;
     updateGallery();
 }
 
 function prevImage() {
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    currentGalleryIndex = (currentGalleryIndex - 1 + currentImages.length) % currentImages.length;
     updateGallery();
 }
 

@@ -284,7 +284,7 @@ a {
     animation-delay: 0.4s;
 }
 
-/* GLOBAL RESPONSIVE (Header/Menu) */
+/* GLOBAL RESPONSIVE (только бургер-меню) */
 @media(max-width:900px) {
     .burger { display: flex; z-index: 1001; }
 

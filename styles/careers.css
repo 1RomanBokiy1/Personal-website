@@ -205,18 +205,6 @@
     width: 100%;
 }
 
-.tag-orange {
-    background: #ff3c1f;
-    color: #fff;
-    padding: 6px 12px;
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    display: inline-block;
-    margin-bottom: 20px;
-}
-
 .hero-arrows {
     position: absolute;
     right: 5%;
@@ -243,7 +231,6 @@
     transform: scale(1.05);
 }
 
-/* Позиционируем счетчик слайдов в левый нижний угол */
 .hero-counter {
     position: absolute;
     left: 5%;
@@ -264,7 +251,6 @@
     color: #666;
 }
 
-/* Адаптив под мобилки для слайдера */
 @media (max-width: 768px) {
     .hero.careers-hero {
         min-height: 50vh;

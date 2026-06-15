@@ -10,35 +10,7 @@
 </head>
 <body>
 
-<header class="header">
-    <div class="container header-inner">
-        <div class="logo"><a href="index.html">BOKIY CORP</a></div>
-        <div class="burger"><span></span><span></span><span></span></div>
-        <nav class="nav">
-            <a href="index.html#news">Новости</a>
-            <div class="nav-item-dropdown">
-                <a href="#">Компания ▾</a>
-                <div class="dropdown-menu">
-                    <a href="404.html">О нас</a>
-                    <a href="index.html#contact">Контакты</a>
-                </div>
-            </div>
-            <div class="nav-item-dropdown">
-                <a href="index.html#games">Продукты ▾</a>
-                <div class="dropdown-menu">
-                    <a href="404.html">God of War</a>
-                    <a href="404.html">Last Of Us</a>
-                    <a href="404.html">Dragon Warrior</a>
-                    <a href="404.html">Dark Souls v</a>
-                    <a href="404.html">Super Mario</a>
-                </div>
-            </div>
-            <a href="404.html">Поддержка</a>
-            <a href="careers.html" class="btn-outline active-link">Карьера</a>
-            <a href="#">Ru / Eng</a>
-        </nav>
-    </div>
-</header>
+<div id="header-placeholder"></div>
 
 <section class="hero careers-hero" id="hero-section">
     <div class="hero-overlay"></div>
@@ -47,11 +19,9 @@
         <h1 id="hero-title">Присоединяйся к команде</h1>
         <p>Создавайте будущее гейминга вместе с нами. Мы ищем талантливых людей.</p>
     </div>
-
     <div class="hero-arrows single-side">
         <button id="next-btn" class="arrow-btn big-arrow">←</button>
     </div>
-
     <div class="hero-counter">
         <span id="current-slide">01</span>/<span id="total-slides">03</span>
     </div>
@@ -65,23 +35,19 @@
                 <p>Мы всегда ищем творческих людей. Если вы не нашли подходящую вакансию, все равно отправьте нам свои данные!</p>
             </div>
         </div>
-
         <div class="apply-form fade-on-scroll">
             <form id="feedbackForm" action="#">
                 <input type="text" id="fullname" placeholder="ФИО" class="form-input">
                 <input type="email" id="email" placeholder="Email" class="form-input">
-                
                 <div class="file-upload" id="fileUploadBox">
                     <span id="fileUploadText">↓ Резюме (PDF/DOCX) до 5MB</span>
                     <input type="file" id="resume" accept=".pdf,.docx">
                 </div>
-
                 <label class="checkbox-container">
                     <input type="checkbox" id="agreement" required>
                     <span class="checkmark"></span>
                     Я согласен на обработку персональных данных
                 </label>
-
                 <button type="submit" class="btn btn-orange-full">Присоединиться</button>
             </form>
         </div>
@@ -94,15 +60,7 @@
     </div>
 </section>
 
-<footer class="footer">
-    <div class="footer-bottom-careers">
-        <div class="footer-left">
-            <p>Bokiy Corp</p>
-            <h5>© 2026 Bokiy Corporation. Все права защищены</h5>
-            <a href="#" class="privacy-link">Политика конфиденциальности</a>
-        </div>
-    </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <div class="modal-overlay" id="customModal">
     <div class="modal-box">
@@ -115,5 +73,6 @@
 <script src="scripts/script1.js"></script>
 <script src="scripts/validation.js"></script>
 <script src="scripts/consolerLogger.js"></script>
+<script src="scripts/loadComponents.js"></script>
 </body>
 </html>

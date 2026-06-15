@@ -10,51 +10,12 @@
 </head>
 <body>
 
-<header class="header">
-    <div class="container header-inner">
-        <div class="logo"><a href="index.html">BOKIY CORP</a></div>
-        
-        <div class="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+<div id="header-placeholder"></div>
 
-        <nav class="nav">
-            <a href="index.html#news">Новости</a>
-            
-            <div class="nav-item-dropdown">
-                <a href="#">Компания ▾</a>
-                <div class="dropdown-menu">
-                    <a href="about.html" class="active-link">О нас</a>
-                    <a href="index.html#contacts">Контакты</a>
-                </div>
-            </div>
-
-            <div class="nav-item-dropdown">
-                <a href="index.html#games">Продукты ▾</a>
-                <div class="dropdown-menu">
-                    <a href="404.html">God of War</a>
-                    <a href="404.html">Last Of Us</a>
-                    <a href="404.html">Dragon Warrior</a>
-                    <a href="404.html">Dark Souls v</a>
-                    <a href="404.html">Super Mario</a>
-                </div>
-            </div>
-
-            <a href="404.html">Поддержка</a>
-            <a href="careers.html" class="btn-outline">Карьера</a>
-            <a href="#">Ru / Eng</a>
-        </nav>
-    </div>
-</header>
-
-<!-- Основная секция "О нас" -->
 <section class="about-main section">
     <div class="container">
         <div class="about-grid">
             <div class="about-image" style="background-image: url('images/about-office.jpg');"></div>
-            
             <div class="about-content">
                 <h2 class="section-title">О НАС</h2>
                 <p>Bokiy Corp — ведущая независимая игровая студия, основанная в 2018 году в Москве. 
@@ -63,7 +24,6 @@
                    и рассказчиков, чтобы создавать эмоциональные, захватывающие миры.</p>
                 <p>Сегодня в нашей команде более 250 специалистов. Наши игры получили множество наград 
                    и завоевали сердца миллионов игроков по всему миру.</p>
-
                 <div class="about-buttons">
                     <a href="careers.html" class="btn">Карьера в Bokiy Corp</a>
                     <a href="index.html#news" class="btn btn-dark">Новости студии</a>
@@ -73,11 +33,9 @@
     </div>
 </section>
 
-<!-- Наши ценности -->
 <section class="values-section section dark">
     <div class="container">
         <h2 class="section-title" style="text-align:center; border-left:none; padding-left:0; margin-bottom:70px;">НАШИ ЦЕННОСТИ</h2>
-        
         <div class="values-grid">
             <div class="value-card">
                 <div class="value-icon">🔥</div>
@@ -108,13 +66,11 @@
     </div>
 </section>
 
-<!-- Наши офисы -->
 <section class="offices-section section">
     <div class="container">
         <h2 class="section-title" style="text-align:center; border-left:none; padding-left:0; margin-bottom:20px;">НАШИ ОФИСЫ</h2>
         <p style="text-align:center; color:#aaa; font-size:18px; margin-bottom:80px;">Несколько городов — одна команда</p>
 
-        <!-- Офис Москва -->
         <div class="office-card">
             <div class="office-image-wrapper">
                 <div class="office-image" style="background-image: url('images/moscow-office.jpg');"></div>
@@ -127,7 +83,6 @@
             </div>
         </div>
 
-        <!-- Офис СПб (пример) -->
         <div class="office-card">
             <div class="office-image-wrapper">
                 <div class="office-image" style="background-image: url('images/spb-office.jpg');"></div>
@@ -142,8 +97,6 @@
     </div>
 </section>
 
-<!-- Галерея (модальное окно) -->
-<!-- Галерея (модальное окно) -->
 <div id="galleryModal" class="gallery-modal">
     <div class="gallery-content">
         <span class="gallery-close" onclick="closeGallery()">×</span>
@@ -154,20 +107,9 @@
     </div>
 </div>
 
-<footer class="footer">
-    <div class="socials">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2026 Bokiy Corp. Все права защищены.</p>
-        <a href="#" class="privacy-link">Политика конфиденциальности</a>
-    </div>
-</footer>
+<div id="footer-placeholder"></div>
 
 <script src="scripts/script1.js"></script>
+<script src="scripts/loadComponents.js"></script>
 </body>
 </html>

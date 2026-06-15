@@ -11,42 +11,45 @@ document.addEventListener('DOMContentLoaded', function () {
         modal.classList.add('active');
     }
 
-    closeModal.addEventListener('click', function () {
-        modal.classList.remove('active');
-    });
+    if (closeModal) {
+        closeModal.addEventListener('click', function () {
+            modal.classList.remove('active');
+        });
+    }
 
     if (!form) return;
     
-    resumeInput.addEventListener('change', function () {
+    if (resumeInput) {
+        resumeInput.addEventListener('change', function () {
+            clearFileError();
 
-        clearFileError();
+            const file = this.files[0];
+            if (!file) return;
 
-        const file = this.files[0];
-        if (!file) return;
+            const maxSize = 5 * 1024 * 1024;
 
-        const maxSize = 5 * 1024 * 1024;
+            if (file.size > maxSize) {
+                showFileError('Файл слишком большой (макс. 5MB)');
+                this.value = '';
+                return;
+            }
 
-        if (file.size > maxSize) {
-            showFileError('Файл слишком большой (макс. 5MB)');
-            this.value = '';
-            return;
-        }
+            const allowedTypes = [
+                'application/pdf',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            ];
 
-        const allowedTypes = [
-            'application/pdf',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
-        ];
+            if (!allowedTypes.includes(file.type)) {
+                showFileError('Разрешены только PDF или DOCX файлы');
+                this.value = '';
+                return;
+            }
 
-        if (!allowedTypes.includes(file.type)) {
-            showFileError('Разрешены только PDF или DOCX файлы');
-            this.value = '';
-            return;
-        }
-
-        fileUploadBox.classList.remove('error');
-        fileUploadBox.classList.add('success');
-        fileUploadText.textContent = `Файл: ${file.name}`;
-    });
+            fileUploadBox.classList.remove('error');
+            fileUploadBox.classList.add('success');
+            fileUploadText.textContent = `Файл: ${file.name}`;
+        });
+    }
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -88,7 +91,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (isValid) {
-
             const formData = {
                 fullname: fullnameValue,
                 email: emailValue,
@@ -103,7 +105,6 @@ document.addEventListener('DOMContentLoaded', function () {
             fileUploadText.textContent = '↓ Загрузите резюме (PDF или DOCX, до 5MB)';
             fileUploadBox.classList.remove('success');
             fileUploadBox.classList.remove('error');
-
         }
     });
 
@@ -138,5 +139,4 @@ document.addEventListener('DOMContentLoaded', function () {
         fileUploadBox.classList.remove('error');
         document.querySelectorAll('#fileUploadBox .error-message').forEach(el => el.remove());
     }
-
 });
