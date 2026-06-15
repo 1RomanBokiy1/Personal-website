@@ -10,20 +10,39 @@
 </head>
 <body>
 
+<div id="preloader" class="preloader">
+    <div class="preloader-logo">BOKIY CORP</div>
+    <div class="preloader-spinner"></div>
+</div>
+
+<script>
+    (function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            requestAnimationFrame(() => {
+                preloader.classList.add('active');
+                setTimeout(() => {
+                    preloader.classList.remove('active');
+                }, 1000);
+            });
+        }
+    })();
+</script>
+
 <div id="header-placeholder"></div>
 
 <section class="hero careers-hero" id="hero-section">
     <div class="hero-overlay"></div>
     <div class="container hero-content fade-in">
-        <span class="tag-orange">Карьера</span>
-        <h1 id="hero-title">Присоединяйся к команде</h1>
+        <span class="tag-orange">КАРЬЕРА</span>
+        <h1 id="hero-title">ПРИСОЕДИНЯЙСЯ К КОМАНДЕ</h1>
         <p>Создавайте будущее гейминга вместе с нами. Мы ищем талантливых людей.</p>
     </div>
     <div class="hero-arrows single-side">
-        <button id="next-btn" class="arrow-btn big-arrow">←</button>
+        <button id="next-btn" class="arrow-btn big-arrow">→</button>
     </div>
     <div class="hero-counter">
-        <span id="current-slide">01</span>/<span id="total-slides">03</span>
+        <span id="current-slide">01</span>/<span id="total-slides">04</span>
     </div>
 </section>
 
