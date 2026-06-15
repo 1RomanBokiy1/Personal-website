@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новость | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/news-detail.css">
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<section class="news-detail">
+    <div class="container">
+        <div class="news-detail-container">
+            <span class="tag news-detail-date" id="news-date">14/02/2026</span>
+            <h1 id="news-title" class="news-detail-title">Какие сложности были при разработке игры "God Of War"</h1>
+            <img id="news-image" class="news-detail-image" src="images/news/main-news.jpg" alt="news">
+            <div id="news-content" class="news-detail-content">
+                <p>Здесь будет полный текст новости. Вы можете наполнить его любым содержанием.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+            <a href="news.html" class="btn btn-dark back-button">← Назад к новостям</a>
+        </div>
+    </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="scripts/loadComponents.js"></script>
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+    if (id === '1') {
+        document.getElementById('news-title').textContent = 'Какие сложности были при разработке игры "God Of War"';
+        document.getElementById('news-date').textContent = '14/02/2026';
+        document.getElementById('news-image').src = 'images/news/main-news.jpg';
+    } else if (id === '2') {
+        document.getElementById('news-title').textContent = 'Возможности продвижения малых проектов';
+        document.getElementById('news-date').textContent = '05/01/2026';
+        document.getElementById('news-image').src = 'images/news/news1.jpg';
+    } else if (id === '3') {
+        document.getElementById('news-title').textContent = 'Крупное обновление в Destiny 2';
+        document.getElementById('news-date').textContent = '28/12/2025';
+        document.getElementById('news-image').src = 'images/news/news2.jpg';
+    }
+</script>
+</body>
+</html>
