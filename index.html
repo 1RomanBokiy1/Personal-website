@@ -10,10 +10,27 @@
 </head>
 <body>
 
+<div id="preloader" class="preloader">
+    <div class="preloader-logo">BOKIY CORP</div>
+    <div class="preloader-spinner"></div>
+</div>
+
+<script>
+    (function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            setTimeout(() => {
+                preloader.classList.remove('active');
+            }, 1000);
+        }
+    })();
+</script>
+
 <div id="header-placeholder"></div>
 
 <section class="hero" id="hero-section">
     <div class="hero-overlay"></div>
+    <video id="hero-video" class="hero-video" autoplay muted loop playsinline style="display: none;"></video>
     <div class="container hero-content fade-in">
         <h1 id="hero-title">God of War</h1>
         <p class="fade-in delay-1">Игровой процесс, который меняет взгляд на жанр</p>
@@ -27,7 +44,7 @@
         <button id="prev-btn" class="arrow-btn">←</button>
     </div>
     <div class="hero-counter">
-        <span id="current-slide">01</span>/<span id="total-slides">05</span>
+        <span id="current-slide">01</span>/<span id="total-slides">04</span>
     </div>
 </section>
 
@@ -36,19 +53,24 @@
         <h2 class="section-title fade-on-scroll">Продукты</h2>
         <div class="games-grid">
             <div class="game-card fade-on-scroll">
-                <div class="game-image"></div>
-                <h3>Destiny 2</h3>
-                <a href="404.html" class="btn-small">Подробнее</a>
+                <div class="game-image" style="background-image: url('images/games/god-of-war.jpg');"></div>
+                <h3>God of War</h3>
+                <a href="game-god-of-war.html" class="btn-small">Подробнее</a>
             </div>
             <div class="game-card fade-on-scroll">
-                <div class="game-image"></div>
-                <h3>The Witcher 3</h3>
-                <a href="404.html" class="btn-small">Подробнее</a>
+                <div class="game-image" style="background-image: url('images/games/fox-run.jpg');"></div>
+                <h3>Fox Run</h3>
+                <a href="game-fox-run.html" class="btn-small">Подробнее</a>
             </div>
             <div class="game-card fade-on-scroll">
-                <div class="game-image"></div>
-                <h3>Dragon Age: Origins</h3>
-                <a href="404.html" class="btn-small">Подробнее</a>
+                <div class="game-image" style="background-image: url('images/games/d-bus-city.jpg');"></div>
+                <h3>D-Bus City</h3>
+                <a href="game-d-bus-city.html" class="btn-small">Подробнее</a>
+            </div>
+            <div class="game-card fade-on-scroll">
+                <div class="game-image" style="background-image: url('images/games/initium.jpg');"></div>
+                <h3>Initium</h3>
+                <a href="game-initium.html" class="btn-small">Подробнее</a>
             </div>
         </div>
     </div>
@@ -58,29 +80,29 @@
     <div class="container">
         <h2 class="section-title fade-on-scroll">Последние новости</h2>
         <div class="news-wrapper">
-            <div class="news-main fade-on-scroll">
-                <div class="news-main-img"></div>
+            <a href="news-detail.html?id=1" class="news-main fade-on-scroll" style="text-decoration: none; color: inherit;">
+                <div class="news-main-img" style="background-image: url('images/news/main-news.jpg');"></div>
                 <div class="news-main-content">
                     <span class="tag">Новое 14/02/2026</span>
                     <h3>Какие сложности были при разработке игры "God Of War"</h3>
                     <p>Бокий Роман - Ведущий разработчик</p>
                 </div>
-            </div>
+            </a>
             <div class="news-side fade-on-scroll">
-                <div class="news-card">
-                    <div class="news-thumb"></div>
+                <a href="news-detail.html?id=2" class="news-card" style="text-decoration: none; color: inherit;">
+                    <div class="news-thumb" style="background-image: url('images/news/news1.jpg');"></div>
                     <span class="tag">05/01/2026</span>
                     <h3>Возможности продвижения малых проектов</h3>
-                </div>
-                <div class="news-card">
-                    <div class="news-thumb"></div>
+                </a>
+                <a href="news-detail.html?id=3" class="news-card" style="text-decoration: none; color: inherit;">
+                    <div class="news-thumb" style="background-image: url('images/news/news2.jpg');"></div>
                     <span class="tag">28/12/2025</span>
                     <h3>Крупное обновление в Destiny 2</h3>
-                </div>
+                </a>
             </div>
         </div>
         <div class="center">
-            <a href="404.html" class="btn accent">Больше Новостей</a>
+            <a href="news.html" class="btn accent">Больше Новостей</a>
         </div>
     </div>
 </section>
@@ -96,8 +118,8 @@
                     <div class="text-block">Квесты, мультиплеер и яркая графика для полного погружения.</div>
                 </div>
                 <div class="promo-buttons-new">
-                    <a href="404.html" class="btn-small-new">Трейлер</a>
-                    <a href="404.html" class="btn-small-new">Подробности</a>
+                    <a href="project-x.html" class="btn-small-new">Трейлер</a>
+                    <a href="project-x.html" class="btn-small-new">Подробности</a>
                 </div>
             </div>
         </div>
@@ -110,8 +132,8 @@
                     <div class="text-block">Короткие миссии, мультиплеерные дуэли и яркая, стильная графика.</div>
                 </div>
                 <div class="promo-buttons-new">
-                    <a href="404.html" class="btn-small-new">Трейлер</a>
-                    <a href="404.html" class="btn-small-new">Подробности</a>
+                    <a href="project-w.html" class="btn-small-new">Трейлер</a>
+                    <a href="project-w.html" class="btn-small-new">Подробности</a>
                 </div>
             </div>
         </div>
@@ -123,18 +145,12 @@
         <div class="fade-on-scroll">
             <h2 class="section-title small">Местоположения</h2>
             <div class="locations-grid">
-                <div class="location-card location-card-1">
+                <a href="about.html#offices" class="location-card location-card-1" style="text-decoration: none;">
                     <h3>Москва</h3>
-                </div>
-                <div class="location-card location-card-2">
-                    <h3>Питер</h3>
-                </div>
-                <div class="location-card location-card-3">
-                    <h3>Урал</h3>
-                </div>
-                <div class="location-card location-card-4">
-                    <h3>Ростов на Дону</h3>
-                </div>
+                </a>
+                <a href="about.html#offices" class="location-card location-card-2" style="text-decoration: none;">
+                    <h3>Санкт-Петербург</h3>
+                </a>
             </div>
         </div>
         <div class="fade-on-scroll">
@@ -152,7 +168,7 @@
 
 <div id="footer-placeholder"></div>
 
-<script src="scripts/script1.js"></script>
 <script src="scripts/loadComponents.js"></script>
+<script src="scripts/script1.js"></script>
 </body>
 </html>
