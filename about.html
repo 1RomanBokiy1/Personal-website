@@ -10,11 +10,30 @@
 </head>
 <body>
 
+<div id="preloader" class="preloader">
+    <div class="preloader-logo">BOKIY CORP</div>
+    <div class="preloader-spinner"></div>
+</div>
+
+<script>
+    (function() {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            requestAnimationFrame(() => {
+                preloader.classList.add('active');
+                setTimeout(() => {
+                    preloader.classList.remove('active');
+                }, 1000);
+            });
+        }
+    })();
+</script>
+
 <div id="header-placeholder"></div>
 
-<section class="about-main section">
+<section class="about-main">
     <div class="container">
-        <div class="about-grid">
+        <div class="about-grid fade-on-scroll">
             <div class="about-image" style="background-image: url('images/about-office.jpg');"></div>
             <div class="about-content">
                 <h2 class="section-title">О НАС</h2>
@@ -35,8 +54,8 @@
 
 <section class="values-section section dark">
     <div class="container">
-        <h2 class="section-title" style="text-align:center; border-left:none; padding-left:0; margin-bottom:70px;">НАШИ ЦЕННОСТИ</h2>
-        <div class="values-grid">
+        <h2 class="section-title fade-on-scroll" style="text-align:center; border-left:none; padding-left:0; margin-bottom:70px;">НАШИ ЦЕННОСТИ</h2>
+        <div class="values-grid fade-on-scroll">
             <div class="value-card">
                 <div class="value-icon">🔥</div>
                 <h3>BE AMBITIOUS</h3>
@@ -66,12 +85,12 @@
     </div>
 </section>
 
-<section class="offices-section section">
+<section id="offices" class="offices-section section">
     <div class="container">
-        <h2 class="section-title" style="text-align:center; border-left:none; padding-left:0; margin-bottom:20px;">НАШИ ОФИСЫ</h2>
-        <p style="text-align:center; color:#aaa; font-size:18px; margin-bottom:80px;">Несколько городов — одна команда</p>
+        <h2 class="section-title fade-on-scroll" style="text-align:center; border-left:none; padding-left:0; margin-bottom:20px;">НАШИ ОФИСЫ</h2>
+        <p class="fade-on-scroll" style="text-align:center; color:#aaa; font-size:18px; margin-bottom:80px;">Несколько городов — одна команда</p>
 
-        <div class="office-card">
+        <div class="office-card fade-on-scroll">
             <div class="office-image-wrapper">
                 <div class="office-image" style="background-image: url('images/moscow-office.jpg');"></div>
                 <div class="office-city">МОСКВА</div>
@@ -83,7 +102,7 @@
             </div>
         </div>
 
-        <div class="office-card">
+        <div class="office-card fade-on-scroll">
             <div class="office-image-wrapper">
                 <div class="office-image" style="background-image: url('images/spb-office.jpg');"></div>
                 <div class="office-city">САНКТ-ПЕТЕРБУРГ</div>
