@@ -835,3 +835,366 @@ a {
     color: #fff;
     transform: translateY(-2px);
 }
+
+/* ==================== СЕКЦИЯ "О НАС" ==================== */
+.about-main {
+    padding: 140px 0 100px;
+    background: #0b0b0b;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-image {
+    height: 520px;
+    background: #222 center/cover no-repeat;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.about-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.3));
+}
+
+.about-content h2 {
+    font-size: 48px;
+    margin-bottom: 35px;
+}
+
+/* ==================== НАШИ ЦЕННОСТИ ==================== */
+.values-section {
+    padding: 100px 0;
+    background: #111;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px 30px;
+    text-align: center;
+}
+
+.value-card {
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+}
+
+.value-icon {
+    width: 110px;
+    height: 110px;
+    background: #ff3c1f;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 10px 30px rgba(255, 60, 31, 0.3);
+}
+
+/* ==================== НАШИ ОФИСЫ ==================== */
+.offices-section {
+    padding: 100px 0;
+}
+
+.office-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+.office-image {
+    height: 460px;
+    background: #222 center/cover no-repeat;
+    position: relative;
+    border: 1px solid #333;
+}
+
+.office-city {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    background: #fff;
+    color: #000;
+    padding: 10px 28px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.office-text h3 {
+    font-size: 34px;
+    margin-bottom: 25px;
+}
+
+/* Адаптив */
+@media (max-width: 992px) {
+    .about-grid,
+    .office-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    
+    .about-image,
+    .office-image {
+        height: 380px;
+    }
+}
+/* ==================== СЕКЦИЯ "О НАС" ==================== */
+.about-main {
+    padding: 140px 0 100px;
+    background: #0b0b0b;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about-image {
+    height: 520px;
+    background: #222 center/cover no-repeat;
+    border: 1px solid #333;
+    position: relative;
+}
+
+.about-content h2 {
+    font-size: 48px;
+    margin-bottom: 35px;
+}
+
+.about-buttons {
+    margin-top: 50px;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* ==================== ЦЕННОСТИ ==================== */
+.values-section {
+    padding: 100px 0;
+    background: #111;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 50px 30px;
+    text-align: center;
+}
+
+.value-card {
+    transition: transform 0.3s ease;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+}
+
+.value-icon {
+    width: 110px;
+    height: 110px;
+    background: #ff3c1f;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 10px 30px rgba(255, 60, 31, 0.3);
+}
+
+/* ==================== ОФИСЫ ==================== */
+.offices-section {
+    padding: 100px 0;
+    background: #0b0b0b;
+}
+
+.office-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 120px;
+}
+
+.office-image-wrapper {
+    position: relative;
+    height: 460px;
+    border: 1px solid #333;
+    overflow: hidden;
+}
+
+.office-image {
+    width: 100%;
+    height: 100%;
+    background: #222 center/cover no-repeat;
+    transition: transform 0.4s ease;
+}
+
+.office-card:hover .office-image {
+    transform: scale(1.04);
+}
+
+.office-city {
+    position: absolute;
+    top: 35px;
+    left: 35px;
+    background: #fff;
+    color: #000;
+    padding: 10px 32px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.office-text h3 {
+    font-size: 34px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.gallery-btn {
+    background: #ff3c1f;
+    color: white;
+    border: none;
+    padding: 14px 42px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.gallery-btn:hover {
+    background: #ff5a3f;
+    transform: translateY(-3px);
+}
+
+/* ==================== МОДАЛЬНАЯ ГАЛЕРЕЯ ==================== */
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-modal.active {
+    display: flex;
+}
+
+.gallery-content {
+    position: relative;
+    max-width: 95%;
+    max-height: 90vh;
+}
+
+.gallery-image {
+    max-width: 100%;
+    max-height: 85vh;
+    border: 1px solid #444;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+
+.gallery-close {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background: #ff3c1f;
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.gallery-prev,
+.gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,60,31,0.9);
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.gallery-prev { left: -30px; }
+.gallery-next { right: -30px; }
+
+.gallery-counter {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa;
+    font-size: 16px;
+}
+
+/* Адаптив */
+@media (max-width: 992px) {
+    .about-grid,
+    .office-card {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .about-image,
+    .office-image-wrapper {
+        height: 380px;
+    }
+}
+.gallery-close {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    background: #ff3c1f;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1010;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+    transition: all 0.2s;
+}
+
+.gallery-close:hover {
+    background: #ff5a3f;
+    transform: scale(1.1);
+}

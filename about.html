@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+<header class="header">
+    <div class="container header-inner">
+        <div class="logo"><a href="index.html">BOKIY CORP</a></div>
+        
+        <div class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav class="nav">
+            <a href="index.html#news">Новости</a>
+            
+            <div class="nav-item-dropdown">
+                <a href="#">Компания ▾</a>
+                <div class="dropdown-menu">
+                    <a href="about.html" class="active-link">О нас</a>
+                    <a href="index.html#contacts">Контакты</a>
+                </div>
+            </div>
+
+            <div class="nav-item-dropdown">
+                <a href="index.html#games">Продукты ▾</a>
+                <div class="dropdown-menu">
+                    <a href="404.html">God of War</a>
+                    <a href="404.html">Last Of Us</a>
+                    <a href="404.html">Dragon Warrior</a>
+                    <a href="404.html">Dark Souls v</a>
+                    <a href="404.html">Super Mario</a>
+                </div>
+            </div>
+
+            <a href="404.html">Поддержка</a>
+            <a href="careers.html" class="btn-outline">Карьера</a>
+            <a href="#">Ru / Eng</a>
+        </nav>
+    </div>
+</header>
+
+<!-- Основная секция "О нас" -->
+<section class="about-main section">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-image" style="background-image: url('images/about-office.jpg');"></div>
+            
+            <div class="about-content">
+                <h2 class="section-title">О НАС</h2>
+                <p>Bokiy Corp — ведущая независимая игровая студия, основанная в 2018 году в Москве. 
+                   Мы создаём высококачественные AAA-проекты, которые определяют будущее индустрии.</p>
+                <p>С самого начала нашей миссией было объединить талантливых разработчиков, дизайнеров 
+                   и рассказчиков, чтобы создавать эмоциональные, захватывающие миры.</p>
+                <p>Сегодня в нашей команде более 250 специалистов. Наши игры получили множество наград 
+                   и завоевали сердца миллионов игроков по всему миру.</p>
+
+                <div class="about-buttons">
+                    <a href="careers.html" class="btn">Карьера в Bokiy Corp</a>
+                    <a href="index.html#news" class="btn btn-dark">Новости студии</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Наши ценности -->
+<section class="values-section section dark">
+    <div class="container">
+        <h2 class="section-title" style="text-align:center; border-left:none; padding-left:0; margin-bottom:70px;">НАШИ ЦЕННОСТИ</h2>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🔥</div>
+                <h3>BE AMBITIOUS</h3>
+                <p>Ставим высокие цели и идём к ним</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>SET THE GOAL</h3>
+                <p>Целеустремлённость и упорство</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🏆</div>
+                <h3>BE HONEST</h3>
+                <p>Честность во всём</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">❤️</div>
+                <h3>BE KIND</h3>
+                <p>Доброта и уважение</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🎮</div>
+                <h3>FOR GAMERS</h3>
+                <p>Игроки — в центре всего</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Наши офисы -->
+<section class="offices-section section">
+    <div class="container">
+        <h2 class="section-title" style="text-align:center; border-left:none; padding-left:0; margin-bottom:20px;">НАШИ ОФИСЫ</h2>
+        <p style="text-align:center; color:#aaa; font-size:18px; margin-bottom:80px;">Несколько городов — одна команда</p>
+
+        <!-- Офис Москва -->
+        <div class="office-card">
+            <div class="office-image-wrapper">
+                <div class="office-image" style="background-image: url('images/moscow-office.jpg');"></div>
+                <div class="office-city">МОСКВА</div>
+            </div>
+            <div class="office-text">
+                <h3>МОСКВА (HQ)</h3>
+                <p>Главный офис студии. Современное пространство с топовым оборудованием, зоной отдыха и 24/7 доступом.</p>
+                <button class="gallery-btn" onclick="openGallery(0)">ГАЛЕРЕЯ</button>
+            </div>
+        </div>
+
+        <!-- Офис СПб (пример) -->
+        <div class="office-card">
+            <div class="office-image-wrapper">
+                <div class="office-image" style="background-image: url('images/spb-office.jpg');"></div>
+                <div class="office-city">САНКТ-ПЕТЕРБУРГ</div>
+            </div>
+            <div class="office-text">
+                <h3>САНКТ-ПЕТЕРБУРГ</h3>
+                <p>Современный офис в историческом центре с отличной атмосферой для творчества.</p>
+                <button class="gallery-btn" onclick="openGallery(1)">ГАЛЕРЕЯ</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Галерея (модальное окно) -->
+<!-- Галерея (модальное окно) -->
+<div id="galleryModal" class="gallery-modal">
+    <div class="gallery-content">
+        <span class="gallery-close" onclick="closeGallery()">×</span>
+        <button class="gallery-prev" onclick="prevImage()">‹</button>
+        <img id="galleryImage" class="gallery-image" src="" alt="Office Gallery">
+        <button class="gallery-next" onclick="nextImage()">›</button>
+        <div id="galleryCounter" class="gallery-counter">1 / 3</div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="socials">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Bokiy Corp. Все права защищены.</p>
+        <a href="#" class="privacy-link">Политика конфиденциальности</a>
+    </div>
+</footer>
+
+<script src="scripts/script1.js"></script>
+</body>
+</html>

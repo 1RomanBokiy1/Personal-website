@@ -74,3 +74,53 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
+
+// ГАЛЕРЕЯ ОФИСОВ 
+let currentImages = [];
+let currentIndex = 0;
+
+const galleryImages = [
+    // Офис 0 - Москва
+    [
+        "images/moscow-office.jpg",
+        "images/moscow-interior1.jpg",
+        "images/moscow-interior2.jpg"
+    ],
+    // Офис 1 - Санкт-Петербург
+    [
+        "images/spb-office.jpg",
+        "images/spb-interior1.jpg",
+        "images/spb-interior2.jpg"
+    ]
+];
+
+function openGallery(officeIndex) {
+    currentImages = galleryImages[officeIndex] || galleryImages[0];
+    currentIndex = 0;
+    updateGallery();
+    document.getElementById('galleryModal').classList.add('active');
+}
+
+function closeGallery() {
+    document.getElementById('galleryModal').classList.remove('active');
+}
+
+function updateGallery() {
+    document.getElementById('galleryImage').src = currentImages[currentIndex];
+    document.getElementById('galleryCounter').textContent = `${currentIndex + 1} / ${currentImages.length}`;
+}
+
+function nextImage() {
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    updateGallery();
+}
+
+function prevImage() {
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    updateGallery();
+}
+
+// Закрытие по ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") closeGallery();
+});
