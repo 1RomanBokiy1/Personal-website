@@ -1,4 +1,4 @@
-// hero-slider.js
+// index-slider.js – для главной страницы
 document.addEventListener('DOMContentLoaded', () => {
     const mainSlides = [
         {
@@ -51,61 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     ];
 
-    const careerSlides = [
-        {
-            title: "ПРИСОЕДИНЯЙСЯ К КОМАНДЕ",
-            desc: "Создавайте будущее гейминга вместе с нами",
-            bgVideo: "videos/team/careers.mp4",
-            bgImage: ""
-        },
-        {
-            title: "LEVEL DESIGN TEAM",
-            desc: "Проектирование игровых уровней",
-            bgImage: "images/others_photo/level_design_team.jpg",
-            bgVideo: ""
-        },
-        {
-            title: "FRONTEND TEAM",
-            desc: "Разработка пользовательских интерфейсов",
-            bgImage: "",
-            bgVideo: ""
-        },
-        {
-            title: "BACKEND TEAM",
-            desc: "Серверная логика и базы данных",
-            bgImage: "",
-            bgVideo: ""
-        },
-        {
-            title: "ARTIST TEAM",
-            desc: "Визуальное оформление и концепт-арт",
-            bgImage: "",
-            bgVideo: ""
-        },
-        {
-            title: "ENGINEER TEAM",
-            desc: "Разработка движка и оптимизация",
-            bgImage: "",
-            bgVideo: ""
-        },
-        {
-            title: "DEVELOPERS TEAM",
-            desc: "Программирование игровой логики",
-            bgImage: "",
-            bgVideo: ""
-        },
-        {
-            title: "GAME DESIGN TEAM",
-            desc: "Проектирование геймплея и механик",
-            bgImage: "",
-            bgVideo: ""
-        }
-    ];
-
-    const isCareersPage = document.body.contains(document.querySelector('.careers-hero'));
-    const currentList = isCareersPage ? careerSlides : mainSlides;
     let currentIndex = 0;
-
     const heroSection = document.getElementById('hero-section');
     const heroTitle = document.getElementById('hero-title');
     const heroDesc = document.getElementById('hero-desc');
@@ -116,12 +62,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const trailerBtn = document.getElementById('hero-trailer');
     const detailsBtn = document.getElementById('hero-details');
 
-    // Общее количество слайдов
     if (totalSlidesEl) {
-        totalSlidesEl.innerText = `${currentList.length.toString().padStart(2, '0')}`;
+        totalSlidesEl.innerText = `${mainSlides.length.toString().padStart(2, '0')}`;
     }
 
-    // ---- Контейнер для фоновых видео ----
+    // Создаём контейнер для фоновых видео
     let videoContainer = heroSection.querySelector('.hero-bg-videos');
     if (!videoContainer) {
         videoContainer = document.createElement('div');
@@ -133,9 +78,9 @@ document.addEventListener('DOMContentLoaded', () => {
         heroSection.appendChild(videoContainer);
     }
 
-    // ---- Создаём видео для каждого слайда (только для карьеры) ----
+    // Создаём видео для каждого слайда
     const videoElements = [];
-    currentList.forEach((slide, index) => {
+    mainSlides.forEach((slide, index) => {
         if (slide.bgVideo) {
             const video = document.createElement('video');
             video.src = slide.bgVideo;
@@ -169,12 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ---- Переключение видео ----
     function switchVideo(index) {
         const currentVideo = videoElements[index];
         const previousVideo = videoElements.find((v, i) => v && v.dataset.active === 'true');
 
-        // Останавливаем предыдущее и сбрасываем
         if (previousVideo && previousVideo !== currentVideo) {
             previousVideo.pause();
             previousVideo.currentTime = 0;
@@ -187,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         }
 
-        // Запускаем новое видео
         if (currentVideo) {
             currentVideo.currentTime = 0;
             currentVideo.style.display = 'block';
@@ -207,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 currentVideo.play();
             });
         } else {
-            // Если видео нет – скрываем все
             videoElements.forEach(v => {
                 if (v) {
                     v.pause();
@@ -220,10 +161,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ---- Обновление слайда ----
     function updateSlide() {
         if (!heroSection || !heroTitle) return;
-        const slide = currentList[currentIndex];
+        const slide = mainSlides[currentIndex];
 
         heroTitle.innerText = slide.title;
         if (heroDesc) heroDesc.innerText = slide.desc || '';
@@ -231,6 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSlideEl.innerText = `${(currentIndex + 1).toString().padStart(2, '0')}`;
         }
 
+        // Фон – если есть bgImage, используем его как fallback
         heroSection.style.backgroundImage = `url('${slide.bgImage || ''}')`;
         heroSection.style.backgroundSize = 'cover';
         heroSection.style.backgroundPosition = 'center';
@@ -257,20 +198,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ---- Обработчики ----
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % currentList.length;
+            currentIndex = (currentIndex + 1) % mainSlides.length;
             updateSlide();
         });
     }
     if (prevBtn) {
         prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
+            currentIndex = (currentIndex - 1 + mainSlides.length) % mainSlides.length;
             updateSlide();
         });
     }
 
-    // Инициализация
     updateSlide();
 });

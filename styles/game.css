@@ -60,7 +60,7 @@
     color: #ff3c1f;
 }
 .video-container {
-    margin: 60px 0;
+    margin: 40px 0;
 }
 .video-container iframe {
     width: 100%;
@@ -69,7 +69,7 @@
 }
 .back-link {
     display: inline-block;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 @media (max-width: 900px) {
     .game-hero h1 { font-size: 48px; }
@@ -192,10 +192,9 @@
     padding-top: 80px;
     background-size: cover;
     background-position: center;
-    overflow: hidden; /* чтобы видео не выходило за границы */
+    overflow: hidden;
 }
 
-/* Контейнер для фонового видео */
 .game-bg-videos {
     position: absolute;
     inset: 0;
@@ -214,7 +213,6 @@
     transition: opacity 0.5s ease;
 }
 
-/* Затемнение поверх видео, но под текстом */
 .game-hero::after {
     content: '';
     position: absolute;

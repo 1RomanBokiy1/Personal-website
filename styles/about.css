@@ -1,16 +1,14 @@
-
 .about-main {
-    min-height: 100vh;
     padding-top: 80px;
     background: #0b0b0b;
     display: flex;
-    align-items: center;
+    align-items: stretch;
 }
 
 .about-grid {
     display: flex;
-    align-items: stretch;   
-    gap: 0;
+    align-items: stretch;
+    width: 100%;
 }
 
 .about-image {
@@ -18,21 +16,17 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: none; 
-    min-height: 500px;  
-}
-
-.about-image::after {
-    display: none;
+    min-height: 400px;
 }
 
 .about-content {
     flex: 1;
-    padding: 60px;
+    padding: 60px 60px 60px 80px;
     background: #0b0b0b;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    max-width: 700px;
 }
 
 .about-content h2 {
@@ -235,13 +229,8 @@
     transform: translateY(-50%) scale(1.05);
 }
 
-.gallery-prev {
-    left: -30px;
-}
-
-.gallery-next {
-    right: -30px;
-}
+.gallery-prev { left: -30px; }
+.gallery-next { right: -30px; }
 
 .gallery-counter {
     position: absolute;
@@ -255,7 +244,6 @@
     border-radius: 20px;
 }
 
-/* Адаптив для мобильных */
 @media (max-width: 768px) {
     .gallery-close {
         top: 15px;
@@ -264,10 +252,28 @@
         height: 40px;
         font-size: 24px;
     }
-    .gallery-prev {
-        left: 5px;
+    .gallery-prev { left: 5px; }
+    .gallery-next { right: 5px; }
+}
+
+@media (max-width: 992px) {
+    .about-grid {
+        flex-direction: column;
     }
-    .gallery-next {
-        right: 5px;
+    .about-image {
+        min-height: 400px;
+        width: 100%;
+        height: auto;
+    }
+    .about-content {
+        padding: 40px 30px;
+        max-width: 100%;
+    }
+    .office-card {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+    .office-image-wrapper {
+        height: 380px;
     }
 }

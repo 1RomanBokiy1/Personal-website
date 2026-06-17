@@ -13,6 +13,13 @@
 <div id="header-placeholder"></div>
 
 <section class="hero careers-hero" id="hero-section">
+    <!-- Фоновое видео для первого слайда -->
+    <div class="hero-bg-videos">
+        <video id="careers-hero-video" autoplay muted loop playsinline preload="auto">
+            <source src="videos/team/careers.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+    </div>
     <div class="hero-overlay"></div>
     <div class="container hero-content fade-in">
         <span class="tag-orange">КАРЬЕРА</span>
@@ -23,7 +30,7 @@
         <button id="next-btn" class="arrow-btn big-arrow">→</button>
     </div>
     <div class="hero-counter">
-        <span id="current-slide">01</span>/<span id="total-slides">04</span>
+        <span id="current-slide">01</span>/<span id="total-slides">08</span>
     </div>
 </section>
 
@@ -71,7 +78,7 @@
 </div>
 
 <script src="scripts/loadComponents.js"></script>
-<script src="scripts/hero-slider.js"></script>
+<script src="scripts/careers-slider.js"></script>
 <script src="scripts/gallery.js"></script>
 <script src="scripts/validation.js"></script>
 <script src="scripts/consolerLogger.js"></script>

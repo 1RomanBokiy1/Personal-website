@@ -23,7 +23,11 @@
     border-top: 1px solid #222;
 }
 
-.footer-left p { font-size: 24px; font-weight: bold; margin-bottom: 10px; }
+.footer-left p {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 
 .info-text-box {
     border: 1px solid #333;
@@ -84,6 +88,11 @@
     padding: 18px;
     font-weight: bold;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-orange-full:hover {
+    background: #d92f16;
 }
 
 /* ERRORS & SUCCESS */
@@ -123,7 +132,7 @@
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -176,15 +185,10 @@
     transform: translateY(-2px);
 }
 
-@media (max-width: 900px) {
-    .careers-grid { grid-template-columns: 1fr; }
-    .mega-text { font-size: 40px; }
-    .footer-bottom-careers { flex-direction: column; align-items: flex-start; gap: 20px; }
-}
-
+/* ===== HERO ===== */
 .hero.careers-hero {
     position: relative;
-    height: 100vh; 
+    height: 100vh;
     display: flex;
     align-items: center;
     background-color: #0b0b0b;
@@ -192,94 +196,10 @@
     padding-top: 80px;
 }
 
-.hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
-    z-index: 1;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-}
-
-.hero-arrows {
-    position: absolute;
-    right: 5%;
-    bottom: 10%;
-    z-index: 3;
-}
-
-.arrow-btn.big-arrow {
-    background: transparent;
-    border: 2px solid #ff3c1f;
-    color: #fff;
-    font-size: 24px;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.arrow-btn.big-arrow:hover {
-    background: #ff3c1f;
-    transform: scale(1.05);
-}
-
-.hero-counter {
-    position: absolute;
-    left: 5%;
-    bottom: 11%;
-    z-index: 3;
-    font-family: 'Oswald', sans-serif;
-    font-size: 24px;
-    color: #fff;
-    letter-spacing: 2px;
-}
-
-#current-slide {
-    color: #ff3c1f;
-    font-weight: 600;
-}
-
-#total-slides {
-    color: #666;
-}
-
-@media (max-width: 768px) {
-    .hero.careers-hero {
-        min-height: 50vh;
-        padding-bottom: 80px;
-    }
-    .hero-arrows {
-        right: 5%;
-        bottom: 5%;
-    }
-    .hero-counter {
-        left: 5%;
-        bottom: 6%;
-        font-size: 18px;
-    }
-}
-/* Стили для hero-секции карьеры */
-.hero.careers-hero {
-    position: relative;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    background-color: #0b0b0b;
-    overflow: hidden;
-}
-
 .hero.careers-hero .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.8) 100%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.8) 100%);
     z-index: 1;
 }
 
@@ -361,17 +281,60 @@
     color: #666;
 }
 
+/* ===== ВИДЕО НА СТРАНИЦЕ КАРЬЕРЫ ===== */
+.hero.careers-hero .hero-bg-videos {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.hero.careers-hero .hero-bg-videos video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero.careers-hero .hero-overlay {
+    z-index: 1;
+}
+
+.hero.careers-hero .hero-content {
+    z-index: 2;
+}
+
+/* ===== АДАПТИВ ===== */
+@media (max-width: 900px) {
+    .careers-grid {
+        grid-template-columns: 1fr;
+    }
+    .mega-text {
+        font-size: 40px;
+    }
+    .footer-bottom-careers {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
 @media (max-width: 768px) {
+    .hero.careers-hero {
+        height: 100vh;
+        min-height: 50vh;
+        padding-bottom: 80px;
+    }
     .hero.careers-hero .hero-content h1 {
         font-size: 42px;
     }
     .hero.careers-hero .hero-arrows {
-        bottom: 5%;
         right: 5%;
+        bottom: 5%;
     }
     .hero.careers-hero .hero-counter {
-        bottom: 6%;
         left: 5%;
+        bottom: 6%;
         font-size: 18px;
     }
     .hero.careers-hero .arrow-btn.big-arrow {

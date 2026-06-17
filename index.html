@@ -42,36 +42,59 @@
     <div class="container">
         <h2 class="section-title fade-on-scroll">Продукты</h2>
         <div class="games-grid">
-            <div class="game-card fade-on-scroll">
-                <div class="game-image" style="background-image: url('images/games/god-of-war.jpg');"></div>
-                <h3>God of War</h3>
-                <a href="game-god-of-war.html" class="btn-small">Подробнее</a>
-            </div>
-            <div class="game-card fade-on-scroll">
+            <a href="game-god-of-war.html" class="game-card fade-on-scroll">
+                <div class="game-image" style="background-image: url('images/games/god_of_war/icon_menu_godofwar.png');"></div>
+                <div class="game-info">
+                    <h3>God of War</h3>
+                    <span class="btn-small">Подробнее</span>
+                </div>
+            </a>
+            <a href="game-fox-run.html" class="game-card fade-on-scroll">
                 <div class="game-image" style="background-image: url('images/games/fox-run.jpg');"></div>
-                <h3>Fox Run</h3>
-                <a href="game-fox-run.html" class="btn-small">Подробнее</a>
-            </div>
-            <div class="game-card fade-on-scroll">
+                <div class="game-info">
+                    <h3>Fox Run</h3>
+                    <span class="btn-small">Подробнее</span>
+                </div>
+            </a>
+            <a href="game-d-bus-city.html" class="game-card fade-on-scroll">
                 <div class="game-image" style="background-image: url('images/games/d-bus-city.jpg');"></div>
-                <h3>D-Bus City</h3>
-                <a href="game-d-bus-city.html" class="btn-small">Подробнее</a>
-            </div>
-            <div class="game-card fade-on-scroll">
+                <div class="game-info">
+                    <h3>D-Bus City</h3>
+                    <span class="btn-small">Подробнее</span>
+                </div>
+            </a>
+            <a href="game-initium.html" class="game-card fade-on-scroll">
                 <div class="game-image" style="background-image: url('images/games/initium.jpg');"></div>
-                <h3>Initium</h3>
-                <a href="game-initium.html" class="btn-small">Подробнее</a>
-            </div>
+                <div class="game-info">
+                    <h3>Initium</h3>
+                    <span class="btn-small">Подробнее</span>
+                </div>
+            </a>
+            <a href="#developing" class="game-card fade-on-scroll">
+                <div class="game-image" style="background-image: url('images/projects/project-x-logo.png');"></div>
+                <div class="game-info">
+                    <h3>Проект X</h3>
+                </div>
+            </a>
+            <a href="#developing" class="game-card fade-on-scroll">
+                <div class="game-image" style="background-image: url('images/projects/project-w-logo.png');"></div>
+                <div class="game-info">
+                    <h3>Проект W</h3>
+                </div>
+            </a>
         </div>
     </div>
 </section>
 
+<!-- НОВОСТИ -->
 <section id="news" class="section">
     <div class="container">
         <h2 class="section-title fade-on-scroll">Последние новости</h2>
         <div class="news-wrapper">
             <a href="news-detail.html?id=1" class="news-main fade-on-scroll" style="text-decoration: none; color: inherit;">
-                <div class="news-main-img" style="background-image: url('images/news/main-news.jpg');"></div>
+                <div class="news-main-img">
+                    <img src="images/news/news1.jpg" alt="God of War">
+                </div>
                 <div class="news-main-content">
                     <span class="tag">Новое 14/02/2026</span>
                     <h3>Какие сложности были при разработке игры "God Of War"</h3>
@@ -80,7 +103,7 @@
             </a>
             <div class="news-side fade-on-scroll">
                 <a href="news-detail.html?id=2" class="news-card" style="text-decoration: none; color: inherit;">
-                    <div class="news-thumb" style="background-image: url('images/news/news1.jpg');"></div>
+                    <div class="news-thumb" style="background-image: url('images/news/new1.jpg');"></div>
                     <span class="tag">05/01/2026</span>
                     <h3>Возможности продвижения малых проектов</h3>
                 </a>
@@ -97,7 +120,7 @@
     </div>
 </section>
 
-<section class="section dark">
+<section id="developing" class="section dark">
     <div class="container">
         <h2 class="section-title fade-on-scroll">В РАЗРАБОТКЕ</h2>
         <div class="promo-grid-new">
@@ -131,15 +154,16 @@
     </div>
 </section>
 
+<!-- Местоположения -->
 <section class="section">
     <div class="container bottom-grid">
         <div class="fade-on-scroll">
             <h2 class="section-title small">Местоположения</h2>
             <div class="locations-grid">
-                <a href="about.html#offices" class="location-card location-card-1" style="text-decoration: none;">
+                <a href="about.html#offices" class="location-card location-card-1" style="text-decoration: none; background-image: url('images/others_photo/office_moscow.jpg');">
                     <h3>Москва</h3>
                 </a>
-                <a href="about.html#offices" class="location-card location-card-2" style="text-decoration: none;">
+                <a href="about.html#offices" class="location-card location-card-2" style="text-decoration: none; background-image: url('images/others_photo/office_peter.jpg');">
                     <h3>Санкт-Петербург</h3>
                 </a>
             </div>
@@ -160,8 +184,8 @@
 <div id="footer-placeholder"></div>
 
 <script src="scripts/loadComponents.js"></script>
-<script src="scripts/video-modal.js"></script>   <!-- ← video-modal теперь перед hero-slider -->
-<script src="scripts/hero-slider.js"></script>
+<script src="scripts/video-modal.js"></script>
+<script src="scripts/index-slider.js"></script>
 <script src="scripts/gallery.js"></script>
 <script src="scripts/fade-animation.js"></script>
 </body>
