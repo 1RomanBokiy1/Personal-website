@@ -10,25 +10,6 @@
 </head>
 <body>
 
-<div id="preloader" class="preloader">
-    <div class="preloader-logo">BOKIY CORP</div>
-    <div class="preloader-spinner"></div>
-</div>
-
-<script>
-    (function() {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            requestAnimationFrame(() => {
-                preloader.classList.add('active');
-                setTimeout(() => {
-                    preloader.classList.remove('active');
-                }, 1000);
-            });
-        }
-    })();
-</script>
-
 <div id="header-placeholder"></div>
 
 <section class="about-main">
@@ -128,7 +109,8 @@
 
 <div id="footer-placeholder"></div>
 
-<script src="scripts/script1.js"></script>
 <script src="scripts/loadComponents.js"></script>
+<script src="scripts/gallery.js"></script>
+<script src="scripts/fade-animation.js"></script>
 </body>
 </html>

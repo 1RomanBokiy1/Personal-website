@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статьи поддержки | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/support-articles.css">
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<section class="articles-page">
+    <div class="container">
+        <div class="search-box articles-search">
+            <form class="search-form" action="support-articles.html" method="get">
+                <input type="text" name="q" placeholder="Поиск по статьям..." class="form-input search-input" id="articles-search-input" value="">
+                <button type="submit" class="btn search-btn">Поиск</button>
+            </form>
+        </div>
+
+        <div class="articles-layout">
+            <aside class="articles-sidebar">
+                <h2>Категории</h2>
+                <ul id="category-list">
+                    <li><a href="support-articles.html?category=general" class="active" data-category="general">Общие вопросы</a></li>
+                    <li><a href="support-articles.html?category=tech" data-category="tech">Техническая поддержка</a></li>
+                    <li><a href="support-articles.html?category=account" data-category="account">Аккаунт и профиль</a></li>
+                    <li><a href="support-articles.html?category=contact" data-category="contact">Связь с нами</a></li>
+                </ul>
+                <div class="back-link">
+                    <a href="support.html" class="btn-small">← Назад в поддержку</a>
+                </div>
+            </aside>
+
+            <main class="articles-list-main">
+                <h1 id="category-title">Общие вопросы</h1>
+                <div id="articles-container">
+                    <!-- Статьи будут вставлены JavaScript -->
+                </div>
+            </main>
+        </div>
+    </div>
+</section>
+
+<div class="modal-overlay" id="articleModal">
+    <div class="modal-box">
+        <h3 id="articleModalTitle">Статья</h3>
+        <p id="articleModalText">Статья будет доступна в ближайшее время. Следите за обновлениями.</p>
+        <button id="articleModalClose" class="btn">Закрыть</button>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="scripts/loadComponents.js"></script>
+<script>
+    // ---- Вспомогательные функции ----
+
+    // 1. Нормализация: убираем повторяющиеся буквы, приводим к нижнему регистру
+    function normalizeString(str) {
+        return str.replace(/(.)\1+/g, '$1').toLowerCase().trim();
+    }
+
+    // 2. Очистка от знаков препинания и приведение к нижнему регистру
+    function cleanText(text) {
+        return text.replace(/[^a-zа-яё0-9\s]/gi, ' ').toLowerCase().trim();
+    }
+
+    // 3. Расстояние Левенштейна для нечёткого сравнения
+    function levenshteinDistance(a, b) {
+        if (a.length === 0) return b.length;
+        if (b.length === 0) return a.length;
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) {
+            matrix[i] = [i];
+        }
+        for (let j = 0; j <= a.length; j++) {
+            matrix[0][j] = j;
+        }
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b[i-1] === a[j-1]) {
+                    matrix[i][j] = matrix[i-1][j-1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i-1][j-1] + 1,
+                        matrix[i][j-1] + 1,
+                        matrix[i-1][j] + 1
+                    );
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+
+    // 4. Нечёткое совпадение слова с целевой строкой (с учётом нормализации)
+    function fuzzyMatchWord(word, target, maxDistance = 2) {
+        const normWord = normalizeString(word);
+        const normTarget = normalizeString(target);
+        // Если слово полностью содержится в цели
+        if (normTarget.includes(normWord)) return true;
+        // Если одно из слов слишком короткое – только точное вхождение
+        if (normWord.length <= 2) return normTarget.includes(normWord);
+        // Проверяем расстояние Левенштейна
+        const distance = levenshteinDistance(normWord, normTarget);
+        return distance <= maxDistance;
+    }
+
+    // 5. Синонимы (расширенный словарь)
+    const synonyms = {
+        'аккаунт': ['личный кабинет', 'профиль', 'account', 'лк', 'кабинет', 'настройки', 'страница'],
+        'профиль': ['аккаунт', 'личный кабинет', 'настройки', 'profile'],
+        'пароль': ['password', 'восстановление', 'сброс', 'забыл пароль'],
+        'восстановление': ['пароль', 'сброс', 'забыли пароль'],
+        'email': ['почта', 'электронная почта', 'e-mail', 'мейл'],
+        'техподдержка': ['поддержка', 'support', 'помощь', 'техническая поддержка'],
+        'поддержка': ['техподдержка', 'support', 'помощь'],
+        'часы': ['время работы', 'расписание', 'график', 'часы работы'],
+        'расписание': ['часы работы', 'график', 'время'],
+        'график': ['часы работы', 'расписание'],
+        'игры': ['проекты', 'продукты', 'игровой каталог'],
+        'проекты': ['игры', 'продукты'],
+        'продукты': ['игры', 'проекты'],
+        'скачать': ['загрузка', 'download', 'установка'],
+        'загрузка': ['скачать', 'download', 'установка'],
+        'установка': ['скачать', 'загрузка', 'инсталляция'],
+        'консоль': ['playstation', 'xbox', 'ps', 'ps5', 'игровая приставка'],
+        'компьютер': ['pc', 'пк', 'комп', 'персональный компьютер'],
+        'драйвер': ['драйвера', 'видеокарта', 'nvidia', 'amd', 'обновление'],
+        'системные требования': ['минимальные требования', 'рекомендуемые требования', 'характеристики'],
+    };
+
+    // 6. Расширение запроса синонимами
+    function expandQueryWords(query) {
+        const words = query.toLowerCase().split(/\s+/).filter(w => w.length > 0);
+        const expanded = new Set();
+        words.forEach(word => {
+            expanded.add(word);
+            if (synonyms[word]) {
+                synonyms[word].forEach(syn => expanded.add(syn));
+            }
+        });
+        // Также добавим обратные связи: если в запросе есть синоним, добавим основное слово
+        for (let key in synonyms) {
+            synonyms[key].forEach(syn => {
+                if (words.includes(syn)) {
+                    expanded.add(key);
+                }
+            });
+        }
+        return Array.from(expanded);
+    }
+
+    // 7. Поиск по статьям
+    function searchArticles(query, allArticles) {
+        const normalizedQuery = normalizeString(query);
+        if (!normalizedQuery) return [];
+
+        // Расширяем запрос синонимами
+        const searchWords = expandQueryWords(normalizedQuery);
+        // Также добавим оригинальные слова (уже есть, но на всякий случай)
+        const words = normalizedQuery.split(/\s+/).filter(w => w.length > 0);
+
+        const results = [];
+
+        allArticles.forEach(item => {
+            // Подготавливаем тексты для сравнения
+            const title = cleanText(item.title);
+            const content = cleanText(item.content);
+            const category = cleanText(item.categoryTitle);
+
+            let match = false;
+            let score = 0; // чем выше, тем релевантнее
+
+            // Проверяем каждое поисковое слово
+            const searchTerms = [...words, ...searchWords];
+            for (let term of searchTerms) {
+                if (term.length < 1) continue;
+                // Проверяем по заголовку (вес 2)
+                if (fuzzyMatchWord(term, title)) {
+                    match = true;
+                    score += 2;
+                }
+                // Проверяем по содержимому (вес 1)
+                if (fuzzyMatchWord(term, content)) {
+                    match = true;
+                    score += 1;
+                }
+                // Проверяем по названию категории (вес 0.5)
+                if (fuzzyMatchWord(term, category)) {
+                    match = true;
+                    score += 0.5;
+                }
+            }
+
+            if (match) {
+                results.push({
+                    ...item,
+                    score: score
+                });
+            }
+        });
+
+        // Сортировка по релевантности (убывание)
+        results.sort((a, b) => b.score - a.score);
+        return results;
+    }
+
+    // ---- Данные статей ----
+    const articlesData = {
+        general: {
+            title: 'Общие вопросы',
+            items: [
+                { title: 'Что такое Bokiy Corp?', content: 'Bokiy Corp — ведущая независимая игровая студия, основанная в 2018 году. Мы создаём высококачественные игры.' },
+                { title: 'Какие игры вы разрабатываете?', content: 'Мы разрабатываем игры в жанрах экшен, RPG, аркады и симуляторы. Среди наших проектов God of War, Fox Run, D-Bus City, Initium.' },
+                { title: 'Где можно купить ваши игры?', content: 'Все наши игры доступны на официальном сайте в разделе «Продукты». Также они появятся в цифровых магазинах.' }
+            ]
+        },
+        tech: {
+            title: 'Техническая поддержка',
+            items: [
+                { title: 'Игра не запускается – что делать?', content: 'Проверьте системные требования, обновите драйверы видеокарты, переустановите игру.' },
+                { title: 'Системные требования God of War', content: 'Минимальные: Windows 10, Intel i5, 8GB RAM, GTX 1060. Рекомендуемые: Windows 11, Intel i7, 16GB RAM, RTX 2060.' },
+                { title: 'Как обновить драйвера?', content: 'Для NVIDIA используйте GeForce Experience, для AMD — Radeon Software.' }
+            ]
+        },
+        account: {
+            title: 'Аккаунт и профиль',
+            items: [
+                { title: 'Как восстановить пароль?', content: 'На странице входа нажмите «Забыли пароль?» и следуйте инструкциям на почте.' },
+                { title: 'Как изменить Email?', content: 'Войдите в личный кабинет, перейдите в настройки профиля и измените email.' }
+            ]
+        },
+        contact: {
+            title: 'Связь с нами',
+            items: [
+                { title: 'Как связаться с поддержкой?', content: 'Напишите на support@bokiycorp.com или используйте форму обратной связи на этой странице.' },
+                { title: 'Часы работы поддержки', content: 'Пн-Пт, 10:00 – 19:00 (МСК).' }
+            ]
+        }
+    };
+
+    // ---- Основная логика ----
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category') || 'general';
+    const searchQuery = urlParams.get('q') || '';
+
+    if (searchQuery) {
+        document.getElementById('articles-search-input').value = searchQuery;
+    }
+
+    // Собираем все статьи в один массив
+    const allArticles = [];
+    for (const catKey in articlesData) {
+        const cat = articlesData[catKey];
+        cat.items.forEach(item => {
+            allArticles.push({
+                ...item,
+                category: catKey,
+                categoryTitle: cat.title
+            });
+        });
+    }
+
+    let displayArticles = [];
+    let categoryTitle = '';
+
+    if (searchQuery) {
+        const found = searchArticles(searchQuery, allArticles);
+        displayArticles = found;
+        categoryTitle = found.length > 0 
+            ? 'Результаты поиска: "' + searchQuery + '"' 
+            : 'По запросу "' + searchQuery + '" ничего не найдено';
+    } else {
+        const cat = articlesData[category] || articlesData.general;
+        displayArticles = cat.items.map(item => ({ ...item, category: category, categoryTitle: cat.title }));
+        categoryTitle = cat.title;
+    }
+
+    document.getElementById('category-title').textContent = categoryTitle;
+
+    const container = document.getElementById('articles-container');
+    if (displayArticles.length === 0) {
+        container.innerHTML = '<p class="no-articles">Статьи не найдены. Попробуйте изменить запрос.</p>';
+    } else {
+        container.innerHTML = displayArticles.map(item => `
+            <div class="article-item" data-title="${item.title}" data-content="${item.content}">
+                <h3>${item.title}</h3>
+            </div>
+        `).join('');
+    }
+
+    // Подсветка активной категории (только если нет поиска)
+    document.querySelectorAll('#category-list a').forEach(link => {
+        link.classList.remove('active');
+        if (!searchQuery) {
+            const cat = link.getAttribute('data-category');
+            if (cat === category) {
+                link.classList.add('active');
+            }
+        }
+    });
+
+    // Модалка при клике на статью
+    const modal = document.getElementById('articleModal');
+    const modalTitle = document.getElementById('articleModalTitle');
+    const modalText = document.getElementById('articleModalText');
+    const modalClose = document.getElementById('articleModalClose');
+
+    document.querySelectorAll('.article-item').forEach(item => {
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', function() {
+            const title = this.getAttribute('data-title') || this.querySelector('h3')?.textContent || 'Статья';
+            modalTitle.textContent = title;
+            modalText.textContent = 'Статья будет доступна в ближайшее время. Следите за обновлениями.';
+            modal.classList.add('active');
+        });
+    });
+
+    modalClose.addEventListener('click', function() {
+        modal.classList.remove('active');
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+        }
+    });
+</script>
+</body>
+</html>

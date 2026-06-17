@@ -10,22 +10,6 @@
 </head>
 <body>
 
-<div id="preloader" class="preloader">
-    <div class="preloader-logo">BOKIY CORP</div>
-    <div class="preloader-spinner"></div>
-</div>
-
-<script>
-    (function() {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            setTimeout(() => {
-                preloader.classList.remove('active');
-            }, 1000);
-        }
-    })();
-</script>
-
 <div id="header-placeholder"></div>
 
 <section class="hero" id="hero-section">
@@ -33,10 +17,10 @@
     <video id="hero-video" class="hero-video" autoplay muted loop playsinline style="display: none;"></video>
     <div class="container hero-content fade-in">
         <h1 id="hero-title">God of War</h1>
-        <p class="fade-in delay-1">Игровой процесс, который меняет взгляд на жанр</p>
+        <p class="fade-in delay-1" id="hero-desc">Игровой процесс, который меняет взгляд на жанр</p>
         <div class="hero-buttons fade-in delay-2">
-            <a href="404.html" class="btn">Трейлер</a>
-            <a href="404.html" class="btn btn-dark">Подробности</a>
+            <a id="hero-trailer" href="#" class="btn">Трейлер</a>
+            <a id="hero-details" href="game-god-of-war.html" class="btn btn-dark">Подробнее</a>
         </div>
     </div>
     <div class="hero-arrows">
@@ -44,9 +28,16 @@
         <button id="prev-btn" class="arrow-btn">←</button>
     </div>
     <div class="hero-counter">
-        <span id="current-slide">01</span>/<span id="total-slides">04</span>
+        <span id="current-slide">01</span>/<span id="total-slides">06</span>
     </div>
 </section>
+
+<div id="videoModal" class="video-modal">
+    <div class="video-modal-content">
+        <span class="video-close" id="videoModalClose">&times;</span>
+        <iframe id="videoIframe" src="" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
 
 <section id="games" class="section dark">
     <div class="container">
@@ -108,32 +99,33 @@
 </section>
 
 <section class="section dark">
-    <div class="container promo-grid-new">
-        <div class="promo-card-new fade-on-scroll">
-            <div class="promo-img-new"></div>
-            <div class="promo-content-new">
-                <h3>Проект X</h3>
-                <div class="promo-text-blocks">
-                    <div class="text-block">Открытый мир с динамичным сюжетом и развитием персонажей.</div>
-                    <div class="text-block">Квесты, мультиплеер и яркая графика для полного погружения.</div>
-                </div>
-                <div class="promo-buttons-new">
-                    <a href="project-x.html" class="btn-small-new">Трейлер</a>
-                    <a href="project-x.html" class="btn-small-new">Подробности</a>
+    <div class="container">
+        <h2 class="section-title fade-on-scroll">В РАЗРАБОТКЕ</h2>
+        <div class="promo-grid-new">
+            <div class="promo-card-new fade-on-scroll">
+                <div class="promo-img-new"></div>
+                <div class="promo-content-new">
+                    <h3>Проект X</h3>
+                    <div class="promo-text-blocks">
+                        <div class="text-block">Открытый мир с динамичным сюжетом и развитием персонажей.</div>
+                        <div class="text-block">Квесты, мультиплеер и яркая графика для полного погружения.</div>
+                    </div>
+                    <div class="promo-buttons-new">
+                        <a href="project-x.html" class="btn-small-new">Подробности</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="promo-card-new fade-on-scroll">
-            <div class="promo-img-new"></div>
-            <div class="promo-content-new">
-                <h3>Проект W</h3>
-                <div class="promo-text-blocks">
-                    <div class="text-block">Быстрая аркадная игра с уникальными героями и зрелищными боями.</div>
-                    <div class="text-block">Короткие миссии, мультиплеерные дуэли и яркая, стильная графика.</div>
-                </div>
-                <div class="promo-buttons-new">
-                    <a href="project-w.html" class="btn-small-new">Трейлер</a>
-                    <a href="project-w.html" class="btn-small-new">Подробности</a>
+            <div class="promo-card-new fade-on-scroll">
+                <div class="promo-img-new"></div>
+                <div class="promo-content-new">
+                    <h3>Проект W</h3>
+                    <div class="promo-text-blocks">
+                        <div class="text-block">Быстрая аркадная игра с уникальными героями и зрелищными боями.</div>
+                        <div class="text-block">Короткие миссии, мультиплеерные дуэли и яркая, стильная графика.</div>
+                    </div>
+                    <div class="promo-buttons-new">
+                        <a href="project-w.html" class="btn-small-new">Подробности</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -159,7 +151,7 @@
                 Бизнес - biz@bokiycorp.com <br>
                 Инвесторы - ir@bokiycorp.com<br>
                 Контент - media@bokiycorp.com<br>
-                Тех.Поддержка - support.bokiycorp.com<br>
+                Тех.Поддержка - support@bokiycorp.com<br>
                 Работа - jobs@bokiycorp.com <br>
             </div>
         </div>
@@ -169,6 +161,9 @@
 <div id="footer-placeholder"></div>
 
 <script src="scripts/loadComponents.js"></script>
-<script src="scripts/script1.js"></script>
+<script src="scripts/hero-slider.js"></script>
+<script src="scripts/gallery.js"></script>
+<script src="scripts/video-modal.js"></script>
+<script src="scripts/fade-animation.js"></script>
 </body>
 </html>

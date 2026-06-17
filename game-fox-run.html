@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fox Run | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/game.css">
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<section class="game-hero" style="background-image: url('images/games/fox-run-bg.jpg');" data-video="videos/fox-run.mp4">
+    <div class="container">
+        <h1>Fox Run</h1>
+        <p>Динамичный раннер с невероятной скоростью и приключениями</p>
+    </div>
+</section>
+
+<section class="game-content">
+    <div class="container">
+        <div class="game-description fade-on-scroll">
+            <img src="images/games/fox-run-detail.jpg" alt="Fox Run">
+            <div>
+                <h2 class="section-title">Об игре</h2>
+                <p>Fox Run — это захватывающий раннер, где вы управляете лисёнком, спасающим лес от загрязнения. Бесконечный бег, препятствия и яркая графика.</p>
+                <p><strong>Релиз: 2025 | Мобильные устройства, PC</strong></p>
+                <button class="gallery-btn" onclick="openGameGallery([
+                    'images/games/fox-run-screenshot1.jpg',
+                    'images/games/fox-run-screenshot2.jpg',
+                    'images/games/fox-run-screenshot3.jpg'
+                ])">ГАЛЕРЕЯ</button>
+            </div>
+        </div>
+        <div class="features fade-on-scroll">
+            <div class="feature">
+                <div class="icon">🏃</div>
+                <h3>Быстрый геймплей</h3>
+                <p>Управляйте лисой, уворачиваясь от препятствий</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🎨</div>
+                <h3>Стилистика</h3>
+                <p>Уникальный визуальный стиль</p>
+            </div>
+            <div class="feature">
+                <div class="icon">🏆</div>
+                <h3>Мировые рекорды</h3>
+                <p>Соревнуйтесь с друзьями</p>
+            </div>
+        </div>
+        <div class="video-container fade-on-scroll">
+            <h3 class="section-title small">Трейлер</h3>
+            <iframe src="https://www.youtube.com/embed/example2" title="Fox Run Trailer" allowfullscreen></iframe>
+        </div>
+        <a href="index.html#games" class="btn btn-dark back-link">← К играм</a>
+    </div>
+</section>
+
+<div id="galleryModal" class="gallery-modal">
+    <div class="gallery-content">
+        <span class="gallery-close" onclick="closeGallery()">×</span>
+        <button class="gallery-prev" onclick="prevImage()">‹</button>
+        <img id="galleryImage" class="gallery-image" src="" alt="Screenshot">
+        <button class="gallery-next" onclick="nextImage()">›</button>
+        <div id="galleryCounter" class="gallery-counter">1 / 3</div>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="scripts/loadComponents.js"></script>
+<script src="scripts/gallery.js"></script>
+<script src="scripts/fade-animation.js"></script>
+<script src="scripts/game-video.js"></script>
+</body>
+</html>

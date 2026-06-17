@@ -52,8 +52,205 @@
     font-size: 48px;
     color: #ff3c1f;
 }
+
+/* Подписка */
+.subscribe-block {
+    margin-top: 80px;
+    padding: 40px 0;
+    border-top: 1px solid #333;
+}
+.subscribe-form .form-input {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #444;
+    padding: 15px;
+    color: #fff;
+    margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+}
+.subscribe-form .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ccc;
+    user-select: none;
+    justify-content: center;
+}
+.subscribe-form .checkbox-container input {
+    margin: 0;
+    cursor: pointer;
+}
+.subscribe-form .btn-orange-full {
+    width: 100%;
+    background: #ff3c1f;
+    border: none;
+    color: #fff;
+    padding: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.subscribe-form .btn-orange-full:hover {
+    background: #d92f16;
+}
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 2000;
+}
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.modal-box {
+    background: #1a1a1a;
+    padding: 40px;
+    border: 2px solid #ff3c1f;
+    text-align: center;
+    max-width: 400px;
+    animation: fadeInUp 0.4s ease;
+}
+.modal-box h3 {
+    font-family: 'Oswald', sans-serif;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+.modal-box p {
+    color: #ccc;
+    margin-bottom: 25px;
+}
+.modal-box button {
+    background: #ff3c1f;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 12px 30px;
+    transition: 0.3s;
+    display: inline-block;
+}
+.modal-box button:hover {
+    background: #d92f16;
+    transform: translateY(-2px);
+}
+
 @media (max-width: 900px) {
     .project-hero h1 { font-size: 48px; }
     .project-description { grid-template-columns: 1fr; }
     .features { grid-template-columns: 1fr; }
+}
+.gallery-btn {
+    background: #ff3c1f;
+    color: white;
+    border: none;
+    padding: 14px 42px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.gallery-btn:hover {
+    background: #ff5a3f;
+    transform: translateY(-3px);
+}
+
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.gallery-modal.active {
+    display: flex;
+}
+.gallery-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gallery-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 1px solid #444;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+.gallery-close {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: #ff3c1f;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1010;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+    transition: all 0.2s;
+}
+.gallery-close:hover {
+    background: #ff5a3f;
+    transform: scale(1.1);
+}
+.gallery-prev,
+.gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,60,31,0.9);
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.gallery-prev:hover,
+.gallery-next:hover {
+    background: #ff3c1f;
+    transform: translateY(-50%) scale(1.05);
+}
+.gallery-prev { left: -30px; }
+.gallery-next { right: -30px; }
+.gallery-counter {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa;
+    font-size: 16px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 12px;
+    border-radius: 20px;
 }

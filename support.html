@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поддержка | Bokiy Corp</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/global.css">
+    <link rel="stylesheet" href="styles/support.css">
+</head>
+<body>
+
+<div id="header-placeholder"></div>
+
+<section class="support-hero fade-on-scroll">
+    <div class="container">
+        <h1>Центр поддержки</h1>
+        <p>Найдите ответы на свои вопросы или свяжитесь с нашей командой</p>
+        <form class="search-box" action="support-articles.html" method="get">
+            <input type="text" name="q" placeholder="Поиск по статьям..." class="form-input search-input">
+            <button type="submit" class="btn search-btn">Поиск</button>
+        </form>
+    </div>
+</section>
+
+<section class="support-categories section fade-on-scroll">
+    <div class="container">
+        <h2 class="section-title">Категории</h2>
+        <div class="categories-grid">
+            <div class="category-card fade-on-scroll">
+                <div class="category-icon">❓</div>
+                <h3>Общие вопросы</h3>
+                <p>Информация о компании, играх и проектах</p>
+                <a href="support-articles.html?category=general" class="btn-small">Смотреть</a>
+            </div>
+            <div class="category-card fade-on-scroll">
+                <div class="category-icon">🛠️</div>
+                <h3>Техническая поддержка</h3>
+                <p>Помощь с установкой, ошибками и совместимостью</p>
+                <a href="support-articles.html?category=tech" class="btn-small">Смотреть</a>
+            </div>
+            <div class="category-card fade-on-scroll">
+                <div class="category-icon">👤</div>
+                <h3>Аккаунт и профиль</h3>
+                <p>Восстановление пароля, настройки профиля</p>
+                <a href="support-articles.html?category=account" class="btn-small">Смотреть</a>
+            </div>
+            <div class="category-card fade-on-scroll">
+                <div class="category-icon">💬</div>
+                <h3>Связь с нами</h3>
+                <p>Контакты и форма обратной связи</p>
+                <a href="support-articles.html?category=contact" class="btn-small">Смотреть</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="faq" class="support-faq section dark fade-on-scroll">
+    <div class="container">
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+        <div class="faq-list">
+            <div class="faq-item">
+                <h3 class="faq-question">Как скачать игры Bokiy Corp?</h3>
+                <p class="faq-answer">Все наши игры доступны для скачивания на официальном сайте в разделе «Продукты». Выберите нужную игру и следуйте инструкциям.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Какие системные требования для God of War?</h3>
+                <p class="faq-answer">Минимальные требования: Windows 10, Intel i5, 8GB RAM, GTX 1060. Рекомендуемые: Windows 11, Intel i7, 16GB RAM, RTX 2060.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Как связаться с технической поддержкой?</h3>
+                <p class="faq-answer">Вы можете написать нам на support@bokiycorp.com или заполнить форму обратной связи внизу этой страницы.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Будут ли игры доступны на консолях?</h3>
+                <p class="faq-answer">Да, мы планируем выпуск на PlayStation и Xbox. Следите за новостями в разделе «Новости».</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="support-contact section fade-on-scroll">
+    <div class="container">
+        <h2 class="section-title">Свяжитесь с нами</h2>
+        <div class="contact-grid">
+            <div class="contact-info-box fade-on-scroll">
+                <h3>Наши контакты</h3>
+                <p><strong>Email:</strong> support@bokiycorp.com</p>
+                <p><strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                <p><strong>Часы работы:</strong> Пн-Пт, 10:00 – 19:00 (МСК)</p>
+            </div>
+            <form id="supportForm" class="contact-form fade-on-scroll">
+                <input type="text" id="support-name" placeholder="ФИО" class="form-input" required>
+                <input type="email" id="support-email" placeholder="Email" class="form-input" required>
+                <textarea id="support-message" placeholder="Сообщение" class="form-input" rows="5" required></textarea>
+                <div class="file-upload" id="supportFileUpload">
+                    <span id="supportFileText">↓ Прикрепить файл (до 5MB)</span>
+                    <input type="file" id="support-file" accept=".pdf,.docx,.jpg,.png">
+                </div>
+                <label class="checkbox-container">
+                    <input type="checkbox" id="support-agreement" required>
+                    <span class="checkmark"></span>
+                    Я согласен на обработку персональных данных
+                </label>
+                <button type="submit" class="btn btn-orange-full">Отправить</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="modal-overlay" id="supportModal">
+    <div class="modal-box">
+        <h3>Спасибо за обращение!</h3>
+        <p>Мы получили ваше сообщение и ответим вам в ближайшее время.</p>
+        <button id="supportModalClose" class="btn">Закрыть</button>
+    </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="scripts/loadComponents.js"></script>
+<script src="scripts/fade-animation.js"></script>
+<script>
+    const supportForm = document.getElementById('supportForm');
+    const supportModal = document.getElementById('supportModal');
+    const modalClose = document.getElementById('supportModalClose');
+
+    supportForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (!document.getElementById('support-agreement').checked) {
+            alert('Необходимо согласие на обработку данных');
+            return;
+        }
+        supportModal.classList.add('active');
+        supportForm.reset();
+        document.getElementById('supportFileText').textContent = '↓ Прикрепить файл (до 5MB)';
+    });
+
+    modalClose.addEventListener('click', function() {
+        supportModal.classList.remove('active');
+    });
+
+    document.getElementById('support-file').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            document.getElementById('supportFileText').textContent = 'Файл: ' + file.name;
+        } else {
+            document.getElementById('supportFileText').textContent = '↓ Прикрепить файл (до 5MB)';
+        }
+    });
+</script>
+</body>
+</html>

@@ -10,25 +10,6 @@
 </head>
 <body>
 
-<div id="preloader" class="preloader">
-    <div class="preloader-logo">BOKIY CORP</div>
-    <div class="preloader-spinner"></div>
-</div>
-
-<script>
-    (function() {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            requestAnimationFrame(() => {
-                preloader.classList.add('active');
-                setTimeout(() => {
-                    preloader.classList.remove('active');
-                }, 1000);
-            });
-        }
-    })();
-</script>
-
 <div id="header-placeholder"></div>
 
 <section class="project-hero" style="background-image: url('images/projects/project-x-bg.jpg');">
@@ -42,15 +23,20 @@
 
 <section class="project-content">
     <div class="container">
-        <div class="project-description">
+        <div class="project-description fade-on-scroll">
             <img src="images/projects/project-x-detail.jpg" alt="Project X">
             <div>
                 <h2 class="section-title">Что нас ждёт</h2>
                 <p>Project X — это новая AAA-игра от Bokiy Corp, которая перенесёт вас в мир высоких технологий и древней магии. Исследуйте огромный открытый мир, участвуйте в динамичных сражениях и влийте на сюжет своими решениями.</p>
-                <p>Релиз запланирован на 2027 год. Подпишитесь на рассылку, чтобы первыми узнать новости.</p>
+                <p><strong>Релиз: 2027</strong></p>
+                <button class="gallery-btn" onclick="openGameGallery([
+                    'images/projects/project-x-screenshot1.jpg',
+                    'images/projects/project-x-screenshot2.jpg',
+                    'images/projects/project-x-screenshot3.jpg'
+                ])">ГАЛЕРЕЯ</button>
             </div>
         </div>
-        <div class="features">
+        <div class="features fade-on-scroll">
             <div class="feature">
                 <div class="icon">🌍</div>
                 <h3>Открытый мир</h3>
@@ -67,20 +53,64 @@
                 <p>Множественные концовки</p>
             </div>
         </div>
+
+        <div class="subscribe-block fade-on-scroll">
+            <h2 class="section-title" style="text-align:center; border-left:none; padding-left:0;">Будьте в курсе</h2>
+            <p style="text-align:center; color:#aaa; margin-bottom:40px;">Подпишитесь на новости о проекте X</p>
+            <form id="subscribeFormX" class="subscribe-form" style="max-width:500px; margin:0 auto;">
+                <input type="email" id="sub-email-x" placeholder="Ваш Email" class="form-input" required>
+                <label class="checkbox-container" style="justify-content:center;">
+                    <input type="checkbox" id="sub-agree-x" required>
+                    <span class="checkmark"></span>
+                    Я согласен получать новости
+                </label>
+                <button type="submit" class="btn btn-orange-full">Подписаться</button>
+            </form>
+        </div>
     </div>
 </section>
+
+<div class="modal-overlay" id="subscribeModalX">
+    <div class="modal-box">
+        <h3>Вы подписались!</h3>
+        <p>Спасибо за интерес к проекту X. Мы будем держать вас в курсе.</p>
+        <button id="subModalCloseX" class="btn">Закрыть</button>
+    </div>
+</div>
+
+<!-- Модальное окно галереи -->
+<div id="galleryModal" class="gallery-modal">
+    <div class="gallery-content">
+        <span class="gallery-close" onclick="closeGallery()">×</span>
+        <button class="gallery-prev" onclick="prevImage()">‹</button>
+        <img id="galleryImage" class="gallery-image" src="" alt="Screenshot">
+        <button class="gallery-next" onclick="nextImage()">›</button>
+        <div id="galleryCounter" class="gallery-counter">1 / 3</div>
+    </div>
+</div>
 
 <div id="footer-placeholder"></div>
 
 <script src="scripts/loadComponents.js"></script>
+<script src="scripts/gallery.js"></script>
+<script src="scripts/fade-animation.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('fade-in');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.project-description, .features').forEach(el => observer.observe(el));
+        const form = document.getElementById('subscribeFormX');
+        const modal = document.getElementById('subscribeModalX');
+        const closeBtn = document.getElementById('subModalCloseX');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (!document.getElementById('sub-agree-x').checked) {
+                alert('Необходимо согласие на получение новостей');
+                return;
+            }
+            modal.classList.add('active');
+            form.reset();
+        });
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('active');
+        });
     });
 </script>
 </body>

@@ -77,3 +77,154 @@
     .features { grid-template-columns: 1fr; }
     .video-container iframe { height: 300px; }
 }
+.gallery-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+.gallery-modal.active {
+    display: flex;
+}
+.gallery-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gallery-image {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border: 1px solid #444;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+}
+.gallery-close {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background: #ff3c1f;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1010;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+    transition: all 0.2s;
+}
+.gallery-close:hover {
+    background: #ff5a3f;
+    transform: scale(1.1);
+}
+.gallery-prev,
+.gallery-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255,60,31,0.9);
+    color: white;
+    border: none;
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+.gallery-prev:hover,
+.gallery-next:hover {
+    background: #ff3c1f;
+    transform: translateY(-50%) scale(1.05);
+}
+.gallery-prev {
+    left: -30px;
+}
+.gallery-next {
+    right: -30px;
+}
+.gallery-counter {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #aaa;
+    font-size: 16px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+.gallery-btn {
+    background: #ff3c1f;
+    color: white;
+    border: none;
+    padding: 14px 42px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+.gallery-btn:hover {
+    background: #ff5a3f;
+    transform: translateY(-3px);
+}
+.game-hero {
+    height: 80vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden; /* чтобы видео не выходило за границы */
+}
+
+/* Контейнер для фонового видео */
+.game-bg-videos {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+}
+.game-bg-videos video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+/* Затемнение поверх видео, но под текстом */
+.game-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+    z-index: 1;
+}
+
+.game-hero .container {
+    position: relative;
+    z-index: 2;
+}
+

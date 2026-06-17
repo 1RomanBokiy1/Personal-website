@@ -14,7 +14,7 @@
 
 <section class="news-detail">
     <div class="container">
-        <div class="news-detail-container">
+        <div class="news-detail-container fade-on-scroll">
             <span class="tag news-detail-date" id="news-date">14/02/2026</span>
             <h1 id="news-title" class="news-detail-title">Какие сложности были при разработке игры "God Of War"</h1>
             <img id="news-image" class="news-detail-image" src="images/news/main-news.jpg" alt="news">
@@ -30,6 +30,7 @@
 <div id="footer-placeholder"></div>
 
 <script src="scripts/loadComponents.js"></script>
+<script src="scripts/fade-animation.js"></script>
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get('id');

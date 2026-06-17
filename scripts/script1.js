@@ -110,3 +110,11 @@ function prevImage() {
 document.addEventListener('keydown', function(e) {
     if (e.key === "Escape") closeGallery();
 });
+
+function openGameGallery(images) {
+    currentImages = images;
+    currentGalleryIndex = 0;
+    updateGallery();
+    const modal = document.getElementById('galleryModal');
+    if (modal) modal.classList.add('active');
+}
