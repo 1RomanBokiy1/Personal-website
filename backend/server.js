@@ -10,33 +10,30 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors()); // разрешаем запросы с любого домена (для разработки)
-app.use(express.json()); // для парсинга JSON (если понадобится)
+app.use(cors());
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Настройка Multer для загрузки файлов в папку uploads/
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         const uploadDir = './uploads';
-        // Создаём папку, если её нет
         if (!fs.existsSync(uploadDir)) {
             fs.mkdirSync(uploadDir);
         }
         cb(null, uploadDir);
     },
     filename: (req, file, cb) => {
-        // Уникальное имя файла: время + оригинальное имя
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        // Сохраняем с уникальным именем, чтобы избежать конфликтов с кодировкой
         cb(null, uniqueSuffix + '-' + file.originalname);
     }
 });
 
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+    limits: { fileSize: 5 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
-        // Разрешаем только определённые типы
         const allowedTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'image/jpeg', 'image/png'];
         if (allowedTypes.includes(file.mimetype)) {
             cb(null, true);
@@ -46,17 +43,17 @@ const upload = multer({
     }
 });
 
+// Настройка Nodemailer для Mail.ru
 const transporter = nodemailer.createTransport({
     host: 'smtp.mail.ru',
     port: 465,
-    secure: true, 
+    secure: true,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     }
 });
 
-// Проверка подключения к SMTP (при запуске)
 transporter.verify((error, success) => {
     if (error) {
         console.log('Ошибка подключения к почтовому серверу:', error);
@@ -65,46 +62,52 @@ transporter.verify((error, success) => {
     }
 });
 
-// ----- МАРШРУТЫ ДЛЯ ФОРМ -----
+// Вспомогательная функция для преобразования имени файла из Latin-1 в UTF-8
+function decodeFileName(originalName) {
+    try {
+        return Buffer.from(originalName, 'latin1').toString('utf8');
+    } catch (e) {
+        return originalName;
+    }
+}
 
-// 1. Карьера (с обязательным файлом резюме)
+// ----- МАРШРУТЫ -----
+
+// 1. Карьера
 app.post('/api/careers', upload.single('resume'), async (req, res) => {
     try {
         const { fullname, email } = req.body;
         const file = req.file;
 
-        // Валидация
         if (!fullname || !email || !file) {
             return res.status(400).json({ error: 'Все поля обязательны, включая резюме' });
         }
 
-        // Тема письма
+        const originalFileName = decodeFileName(file.originalname);
+
         const subject = 'Новая заявка на карьеру';
 
-        // HTML-текст письма для вас
         const htmlToYou = `
             <h2>Новая заявка на карьеру</h2>
             <p><strong>ФИО:</strong> ${fullname}</p>
             <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Резюме:</strong> ${file.originalname}</p>
+            <p><strong>Резюме:</strong> ${originalFileName}</p>
             <p><em>Файл прикреплён к письму</em></p>
         `;
 
-        // Письмо для вас (с вложением)
         const mailToYou = {
             from: process.env.EMAIL_USER,
-            to: process.env.EMAIL_USER, // отправляем себе
+            to: process.env.EMAIL_USER,
             subject: subject,
             html: htmlToYou,
             attachments: [
                 {
-                    filename: file.originalname,
+                    filename: originalFileName,
                     path: file.path
                 }
             ]
         };
 
-        // Письмо пользователю (автоответ, без вложения)
         const htmlToUser = `
             <h2>Спасибо за вашу заявку!</h2>
             <p>Мы получили ваше резюме и свяжемся с вами в ближайшее время.</p>
@@ -118,11 +121,9 @@ app.post('/api/careers', upload.single('resume'), async (req, res) => {
             html: htmlToUser
         };
 
-        // Отправляем оба письма
         await transporter.sendMail(mailToYou);
         await transporter.sendMail(mailToUser);
 
-        // Удаляем файл после отправки (чтобы не засорять сервер)
         fs.unlinkSync(file.path);
 
         res.status(200).json({ message: 'Заявка отправлена' });
@@ -132,7 +133,7 @@ app.post('/api/careers', upload.single('resume'), async (req, res) => {
     }
 });
 
-// 2. Поддержка (файл необязательный)
+// 2. Поддержка
 app.post('/api/support', upload.single('attachment'), async (req, res) => {
     try {
         const { name, email, message } = req.body;
@@ -154,8 +155,12 @@ app.post('/api/support', upload.single('attachment'), async (req, res) => {
 
         let attachments = [];
         if (file) {
-            htmlToYou += `<p><strong>Вложение:</strong> ${file.originalname}</p>`;
-            attachments.push({ filename: file.originalname, path: file.path });
+            const originalFileName = decodeFileName(file.originalname);
+            htmlToYou += `<p><strong>Вложение:</strong> ${originalFileName}</p>`;
+            attachments.push({
+                filename: originalFileName,
+                path: file.path
+            });
         }
 
         const mailToYou = {
@@ -193,7 +198,6 @@ app.post('/api/support', upload.single('attachment'), async (req, res) => {
     }
 });
 
-// Запуск сервера
 app.listen(PORT, () => {
     console.log(`Сервер запущен на порту ${PORT}`);
 });
