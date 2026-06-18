@@ -89,19 +89,23 @@
                 <p><strong>Телефон:</strong> +7 (495) 123-45-67</p>
                 <p><strong>Часы работы:</strong> Пн-Пт, 10:00 – 19:00 (МСК)</p>
             </div>
-            <form id="supportForm" class="contact-form fade-on-scroll">
-                <input type="text" id="support-name" placeholder="ФИО" class="form-input" required>
-                <input type="email" id="support-email" placeholder="Email" class="form-input" required>
-                <textarea id="support-message" placeholder="Сообщение" class="form-input" rows="5" required></textarea>
+            <!-- Замените action на свой ID формы -->
+            <form id="supportForm" class="contact-form" action="https://formspree.io/f/xwvjdvqb" method="POST">
+                <input type="text" id="support-name" name="name" placeholder="ФИО" class="form-input" required>
+                <input type="email" id="support-email" name="email" placeholder="Email" class="form-input" required>
+                <textarea id="support-message" name="message" placeholder="Сообщение" class="form-input" rows="5" required></textarea>
                 <div class="file-upload" id="supportFileUpload">
                     <span id="supportFileText">↓ Прикрепить файл (до 5MB)</span>
-                    <input type="file" id="support-file" accept=".pdf,.docx,.jpg,.png">
+                    <input type="file" id="support-file" name="attachment" accept=".pdf,.docx,.jpg,.png">
                 </div>
                 <label class="checkbox-container">
-                    <input type="checkbox" id="support-agreement" required>
+                    <input type="checkbox" id="support-agreement" name="agreement" required>
                     <span class="checkmark"></span>
                     Я согласен на обработку персональных данных
                 </label>
+                <!-- Скрытые поля для Formspree -->
+                <input type="hidden" name="_replyto" id="supportReplyto" value="">
+                <input type="hidden" name="_subject" value="Новое обращение в поддержку">
                 <button type="submit" class="btn btn-orange-full">Отправить</button>
             </form>
         </div>
@@ -121,19 +125,57 @@
 <script src="scripts/loadComponents.js"></script>
 <script src="scripts/fade-animation.js"></script>
 <script>
+    // Новый обработчик для поддержки (с отправкой через fetch)
     const supportForm = document.getElementById('supportForm');
     const supportModal = document.getElementById('supportModal');
     const modalClose = document.getElementById('supportModalClose');
 
     supportForm.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        // Валидация согласия
         if (!document.getElementById('support-agreement').checked) {
             alert('Необходимо согласие на обработку данных');
             return;
         }
-        supportModal.classList.add('active');
-        supportForm.reset();
-        document.getElementById('supportFileText').textContent = '↓ Прикрепить файл (до 5MB)';
+
+        // Проверка файла (необязательно)
+        const fileInput = document.getElementById('support-file');
+        if (fileInput.files.length > 0) {
+            const file = fileInput.files[0];
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Файл слишком большой (макс. 5MB)');
+                return;
+            }
+        }
+
+        // Заполняем _replyto
+        const email = document.getElementById('support-email').value;
+        document.getElementById('supportReplyto').value = email;
+
+        // Собираем данные для отправки
+        const formData = new FormData(supportForm);
+
+        // Отправляем на Formspree через fetch
+        fetch(supportForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                supportModal.classList.add('active');
+                supportForm.reset();
+                document.getElementById('supportFileText').textContent = '↓ Прикрепить файл (до 5MB)';
+            } else {
+                alert('Произошла ошибка. Попробуйте позже.');
+            }
+        })
+        .catch(error => {
+            alert('Ошибка отправки. Проверьте соединение.');
+        });
     });
 
     modalClose.addEventListener('click', function() {

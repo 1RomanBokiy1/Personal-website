@@ -13,7 +13,6 @@
 <div id="header-placeholder"></div>
 
 <section class="hero careers-hero" id="hero-section">
-    <!-- Фоновое видео для первого слайда -->
     <div class="hero-bg-videos">
         <video id="careers-hero-video" autoplay muted loop playsinline preload="auto">
             <source src="videos/team/careers.mp4" type="video/mp4">
@@ -43,18 +42,22 @@
             </div>
         </div>
         <div class="apply-form fade-on-scroll">
-            <form id="feedbackForm" action="#">
-                <input type="text" id="fullname" placeholder="ФИО" class="form-input">
-                <input type="email" id="email" placeholder="Email" class="form-input">
+            <!-- Замените action на свой ID формы -->
+            <form id="feedbackForm" action="https://formspree.io/f/xwvjdvqb" method="POST">
+                <input type="text" id="fullname" name="fullname" placeholder="ФИО" class="form-input" required>
+                <input type="email" id="email" name="email" placeholder="Email" class="form-input" required>
                 <div class="file-upload" id="fileUploadBox">
                     <span id="fileUploadText">↓ Резюме (PDF/DOCX) до 5MB</span>
-                    <input type="file" id="resume" accept=".pdf,.docx">
+                    <input type="file" id="resume" name="resume" accept=".pdf,.docx" required>
                 </div>
                 <label class="checkbox-container">
-                    <input type="checkbox" id="agreement" required>
+                    <input type="checkbox" id="agreement" name="agreement" required>
                     <span class="checkmark"></span>
                     Я согласен на обработку персональных данных
                 </label>
+                <!-- Скрытые поля для Formspree -->
+                <input type="hidden" name="_replyto" id="replytoField" value="">
+                <input type="hidden" name="_subject" value="Новая заявка на карьеру">
                 <button type="submit" class="btn btn-orange-full">Присоединиться</button>
             </form>
         </div>

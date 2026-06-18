@@ -7,10 +7,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('customModal');
     const closeModal = document.getElementById('closeModal');
 
+    // Показ модалки
     function showModal() {
         modal.classList.add('active');
     }
 
+    // Закрытие модалки
     if (closeModal) {
         closeModal.addEventListener('click', function () {
             modal.classList.remove('active');
@@ -18,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     if (!form) return;
-    
+
+    // Валидация файла при выборе
     if (resumeInput) {
         resumeInput.addEventListener('change', function () {
             clearFileError();
@@ -51,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    // Обработка отправки формы
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -64,9 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const agreement = document.getElementById('agreement');
 
         const fullnameValue = fullname.value.trim();
-        const emailValue = email.value.trim(); 
+        const emailValue = email.value.trim();
         const words = fullnameValue.split(' ').filter(word => word.length > 0);
-        
+
         if (fullnameValue === '' || words.length < 1) {
             showError(fullname, 'Введите корректное ФИО');
             isValid = false;
@@ -91,30 +95,52 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (isValid) {
-            const formData = {
-                fullname: fullnameValue,
-                email: emailValue,
-                resume: file.name
-            };
+            // Заполняем _replyto
+            document.getElementById('replytoField').value = emailValue;
 
-            const customEvent = new CustomEvent('formValid', { detail: formData });
-            document.dispatchEvent(customEvent);
+            // Собираем данные
+            const formData = new FormData(form);
 
-            showModal();
-            form.reset();
-            fileUploadText.textContent = '↓ Загрузите резюме (PDF или DOCX, до 5MB)';
-            fileUploadBox.classList.remove('success');
-            fileUploadBox.classList.remove('error');
+            // Отправка через fetch
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Генерируем событие для логгера
+                    const formDataObj = {
+                        fullname: fullnameValue,
+                        email: emailValue,
+                        resume: file.name
+                    };
+                    const customEvent = new CustomEvent('formValid', { detail: formDataObj });
+                    document.dispatchEvent(customEvent);
+
+                    showModal();
+                    form.reset();
+                    fileUploadText.textContent = '↓ Загрузите резюме (PDF или DOCX, до 5MB)';
+                    fileUploadBox.classList.remove('success');
+                    fileUploadBox.classList.remove('error');
+                } else {
+                    alert('Произошла ошибка. Попробуйте позже.');
+                }
+            })
+            .catch(error => {
+                alert('Ошибка отправки. Проверьте соединение.');
+            });
         }
     });
 
+    // Вспомогательные функции для ошибок
     function showError(input, message) {
         input.classList.add('input-error');
-
         const error = document.createElement('div');
         error.classList.add('error-message');
         error.textContent = message;
-
         input.parentNode.appendChild(error);
     }
 
@@ -127,11 +153,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function showFileError(message) {
         fileUploadBox.classList.add('error');
-
         const error = document.createElement('div');
         error.classList.add('error-message');
         error.textContent = message;
-
         fileUploadBox.appendChild(error);
     }
 
