@@ -5,23 +5,26 @@
 .news-detail-container {
     max-width: 800px;
     margin: 0 auto;
+    padding: 0; /* убираем внутренние отступы, чтобы изображение и заголовок были строго по краю */
 }
 
-/* Строка с кнопкой "Назад" и заголовком – прижаты к левому краю */
+/* Строка с кнопкой "Назад" и заголовком – прижаты влево */
 .news-header-row {
     display: flex;
     align-items: center;
     gap: 20px;
     margin-bottom: 8px;
+    justify-content: flex-start; /* явное выравнивание влево */
 }
 
-/* Круглая кнопка "Назад" */
+/* Круглая кнопка "Назад" – фиксированный размер, не сжимается */
 .back-circle {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 48px;
     height: 48px;
+    min-width: 48px;  /* чтобы не сжималась */
     border-radius: 50%;
     background: #1a1a1a;
     border: 2px solid #ff3c1f;
@@ -41,7 +44,7 @@
     color: #fff;
 }
 
-/* Заголовок – без границы и отступа, прижат к левому краю */
+/* Заголовок – без границы и отступов, занимает оставшееся место */
 .news-detail-title {
     font-family: 'Oswald', sans-serif;
     font-size: 36px;
@@ -50,20 +53,22 @@
     flex: 1;
     border-left: none !important;
     padding-left: 0 !important;
+    text-align: left; /* явно влево */
 }
 
-/* Дата – минимальный отступ снизу */
+/* Дата */
 .news-detail-date {
     display: inline-block;
     margin-bottom: 6px;
 }
 
-/* Изображение – минимальный отступ сверху */
+/* Изображение – на всю ширину контейнера */
 .news-detail-image {
     width: 100%;
     margin: 10px 0 30px;
     border-radius: 8px;
     border: 1px solid #333;
+    display: block;
 }
 
 /* Текст статьи */
@@ -91,6 +96,7 @@
     margin-top: 50px;
 }
 
+/* Адаптив для мобильных */
 @media (max-width: 768px) {
     .news-detail {
         padding: 120px 0 60px;
@@ -108,6 +114,7 @@
     .back-circle {
         width: 40px;
         height: 40px;
+        min-width: 40px;
         font-size: 20px;
     }
 }

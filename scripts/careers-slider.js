@@ -59,13 +59,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalSlidesEl = document.getElementById('total-slides');
     const nextBtn = document.getElementById('next-btn');
 
+    const videoElement = document.getElementById('careers-hero-video');
+    let videoReady = false;
+
+    // --- Обработчики видео ---
+    if (videoElement) {
+        // Когда видео достаточно загружено для воспроизведения
+        videoElement.addEventListener('canplaythrough', function() {
+            videoReady = true;
+            console.log('Видео загружено и готово к воспроизведению');
+            if (currentIndex === 0) {
+                videoElement.play().catch(err => {
+                    console.warn('Автовоспроизведение заблокировано:', err);
+                    // Можно добавить кнопку для ручного запуска, но пока просто игнорируем
+                });
+            }
+        });
+
+        // Если видео уже загружено (например, из кэша)
+        if (videoElement.readyState >= 4) { // HAVE_ENOUGH_DATA
+            videoReady = true;
+            if (currentIndex === 0) {
+                videoElement.play().catch(() => {});
+            }
+        }
+
+        // Ошибка загрузки – выводим в консоль, но НЕ скрываем видео
+        videoElement.addEventListener('error', function(e) {
+            console.error('Ошибка загрузки видео:', videoElement.error);
+            // Можно показать запасной фон, но не скрываем видео, чтобы пользователь видел хотя бы poster
+            // Устанавливаем чёрный фон, если видео не загрузилось
+            if (currentIndex === 0) {
+                heroSection.style.backgroundColor = '#0b0b0b';
+            }
+        });
+
+        // Логируем события для отладки
+        videoElement.addEventListener('loadedmetadata', function() {
+            console.log('Метаданные видео загружены');
+        });
+        videoElement.addEventListener('loadstart', function() {
+            console.log('Начата загрузка видео');
+        });
+    } else {
+        console.warn('Элемент video с id="careers-hero-video" не найден');
+    }
+
+    // --- Общее количество слайдов ---
     if (totalSlidesEl) {
         totalSlidesEl.innerText = `${careerSlides.length.toString().padStart(2, '0')}`;
     }
 
-    // Видео уже вставлено в HTML, получаем его
-    const videoElement = document.getElementById('careers-hero-video');
-
+    // --- Обновление слайда ---
     function updateSlide() {
         if (!heroSection || !heroTitle) return;
         const slide = careerSlides[currentIndex];
@@ -76,30 +121,41 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSlideEl.innerText = `${(currentIndex + 1).toString().padStart(2, '0')}`;
         }
 
-        // Если первый слайд – показываем видео, иначе – фоновое изображение на весь экран
+        // Управление видео и фоном
         if (currentIndex === 0 && videoElement) {
+            // Первый слайд – показываем видео
             videoElement.style.display = 'block';
-            videoElement.play().catch(() => {});
             heroSection.style.backgroundImage = 'none';
-            heroSection.style.backgroundSize = 'auto';
-        } else {
-            if (videoElement) {
-                videoElement.style.display = 'none';
-                videoElement.pause();
+            heroSection.style.backgroundColor = 'transparent';
+
+            // Если видео готово – запускаем
+            if (videoReady) {
+                videoElement.play().catch(() => {});
+            } else {
+                // Если ещё не готово – пытаемся загрузить
+                if (videoElement.paused && videoElement.networkState !== 2) {
+                    videoElement.load();
+                }
             }
-            // Устанавливаем фоновое изображение на весь экран
+        } else {
+            // Другие слайды – скрываем видео и показываем фоновое изображение
+            if (videoElement) {
+                videoElement.pause();
+                videoElement.style.display = 'none';
+            }
             if (slide.bgImage) {
                 heroSection.style.backgroundImage = `url('${slide.bgImage}')`;
                 heroSection.style.backgroundSize = 'cover';
                 heroSection.style.backgroundPosition = 'center';
+                heroSection.style.backgroundColor = 'transparent';
             } else {
-                // Если изображения нет – чёрный фон
                 heroSection.style.backgroundImage = 'none';
                 heroSection.style.backgroundColor = '#0b0b0b';
             }
         }
     }
 
+    // --- Обработчик кнопки "вперёд" ---
     if (nextBtn) {
         nextBtn.addEventListener('click', () => {
             currentIndex = (currentIndex + 1) % careerSlides.length;
@@ -107,5 +163,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Инициализация ---
     updateSlide();
 });

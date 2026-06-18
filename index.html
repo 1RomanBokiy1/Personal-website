@@ -91,6 +91,7 @@
     <div class="container">
         <h2 class="section-title fade-on-scroll">Последние новости</h2>
         <div class="news-wrapper">
+            <!-- Главная новость (id=1) -->
             <a href="news-detail.html?id=1" class="news-main fade-on-scroll" style="text-decoration: none; color: inherit;">
                 <div class="news-main-img">
                     <img src="images/news/news1.jpg" alt="God of War">
@@ -101,16 +102,23 @@
                     <p>Бокий Роман - Ведущий разработчик</p>
                 </div>
             </a>
+            <!-- Боковые новости -->
             <div class="news-side fade-on-scroll">
+                <!-- Новость 2 -->
                 <a href="news-detail.html?id=2" class="news-card" style="text-decoration: none; color: inherit;">
-                    <div class="news-thumb" style="background-image: url('images/news/new1.jpg');"></div>
+                    <div class="news-thumb" style="overflow: hidden; height: 120px; background: #333; border-radius: 4px;">
+                        <img src="images/news/news2.png" alt="Маркетинг инди-игр" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <span class="tag">05/01/2026</span>
-                    <h3>Возможности продвижения малых проектов</h3>
+                    <h3>Маркетинг инди-игр: как не провалить продвижение</h3>
                 </a>
+                <!-- Новость 3 -->
                 <a href="news-detail.html?id=3" class="news-card" style="text-decoration: none; color: inherit;">
-                    <div class="news-thumb" style="background-image: url('images/news/news2.jpg');"></div>
+                    <div class="news-thumb" style="overflow: hidden; height: 120px; background: #333; border-radius: 4px;">
+                        <img src="images/news/news3.png" alt="Жанры видеоигр" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                    </div>
                     <span class="tag">28/12/2025</span>
-                    <h3>Крупное обновление в Destiny 2</h3>
+                    <h3>Жанры видеоигр: всё, что вам нужно знать</h3>
                 </a>
             </div>
         </div>
