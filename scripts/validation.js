@@ -7,21 +7,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const modal = document.getElementById('customModal');
     const closeModal = document.getElementById('closeModal');
 
-    // Показ модалки
     function showModal() {
         modal.classList.add('active');
     }
 
-    // Закрытие модалки
     if (closeModal) {
         closeModal.addEventListener('click', function () {
             modal.classList.remove('active');
         });
     }
 
-    if (!form) return;
+    if (!form) {
+        console.error('Форма feedbackForm не найдена');
+        return;
+    }
 
-    // Валидация файла при выборе
+    // Валидация файла
     if (resumeInput) {
         resumeInput.addEventListener('change', function () {
             clearFileError();
@@ -54,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Обработка отправки формы
+    // Обработка отправки
     form.addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -94,45 +95,56 @@ document.addEventListener('DOMContentLoaded', function () {
             isValid = false;
         }
 
-        if (isValid) {
-            // Заполняем _replyto
-            document.getElementById('replytoField').value = emailValue;
+        if (!isValid) return;
 
-            // Собираем данные
-            const formData = new FormData(form);
+        // Заполняем _replyto
+        document.getElementById('replytoField').value = emailValue;
 
-            // Отправка через fetch
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Генерируем событие для логгера
-                    const formDataObj = {
-                        fullname: fullnameValue,
-                        email: emailValue,
-                        resume: file.name
-                    };
-                    const customEvent = new CustomEvent('formValid', { detail: formDataObj });
-                    document.dispatchEvent(customEvent);
+        // Собираем данные
+        const formData = new FormData(form);
 
-                    showModal();
-                    form.reset();
-                    fileUploadText.textContent = '↓ Загрузите резюме (PDF или DOCX, до 5MB)';
-                    fileUploadBox.classList.remove('success');
-                    fileUploadBox.classList.remove('error');
-                } else {
-                    alert('Произошла ошибка. Попробуйте позже.');
-                }
-            })
-            .catch(error => {
-                alert('Ошибка отправки. Проверьте соединение.');
-            });
-        }
+        // ПРОВЕРКА: выводим URL, на который отправляем
+        console.log('Отправка на:', form.action);
+        console.log('Данные:', [...formData.entries()]);
+
+        // Отправка через fetch
+        fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            console.log('Статус ответа:', response.status);
+            if (!response.ok) {
+                return response.text().then(text => {
+                    throw new Error(`HTTP ${response.status}: ${text}`);
+                });
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Успешно отправлено:', data);
+            // Генерируем событие для логгера
+            const formDataObj = {
+                fullname: fullnameValue,
+                email: emailValue,
+                resume: file.name
+            };
+            const customEvent = new CustomEvent('formValid', { detail: formDataObj });
+            document.dispatchEvent(customEvent);
+
+            showModal();
+            form.reset();
+            fileUploadText.textContent = '↓ Загрузите резюме (PDF или DOCX, до 5MB)';
+            fileUploadBox.classList.remove('success');
+            fileUploadBox.classList.remove('error');
+        })
+        .catch(error => {
+            console.error('Ошибка отправки:', error);
+            alert('Произошла ошибка. Проверьте консоль (F12) для деталей.\n' + error.message);
+        });
     });
 
     // Вспомогательные функции для ошибок

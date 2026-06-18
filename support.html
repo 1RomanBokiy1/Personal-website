@@ -85,12 +85,12 @@
         <div class="contact-grid">
             <div class="contact-info-box fade-on-scroll">
                 <h3>Наши контакты</h3>
-                <p><strong>Email:</strong> support@bokiycorp.com</p>
+                <p><strong>Email:</strong> sphagnum.bokij@bk.ru</p>
                 <p><strong>Телефон:</strong> +7 (495) 123-45-67</p>
                 <p><strong>Часы работы:</strong> Пн-Пт, 10:00 – 19:00 (МСК)</p>
             </div>
             <!-- Замените action на свой ID формы -->
-            <form id="supportForm" class="contact-form" action="https://formspree.io/f/xwvjdvqb" method="POST">
+            <form id="supportForm" class="contact-form" action="http://localhost:5000/api/support" method="POST">
                 <input type="text" id="support-name" name="name" placeholder="ФИО" class="form-input" required>
                 <input type="email" id="support-email" name="email" placeholder="Email" class="form-input" required>
                 <textarea id="support-message" name="message" placeholder="Сообщение" class="form-input" rows="5" required></textarea>
